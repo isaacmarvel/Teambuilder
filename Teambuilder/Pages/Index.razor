@@ -1,0 +1,42 @@
+﻿@page "/"
+
+<PageTitle>Teams</PageTitle>
+
+@*This will be my list of teams already built*@
+
+<MudText Typo="Typo.h3" GutterBottom="true">Teams</MudText>
+<MudText Class="mb-8">From this page, you can view your already-built teams, or click the button to make a new team.</MudText>
+<MudButton Variant="Variant.Filled" Color="Color.Secondary" Href="/NewTeam">Build a new team</MudButton>
+<br> <br>
+<h2>
+    Your current teams:
+</h2>
+
+<MudCard>
+    <MudCardContent>
+        <MudText>Name of team goes here</MudText>
+        <MudText Typo="Typo.body2">Images of pokemon go here</MudText>
+    </MudCardContent>
+    <MudCardActions>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary">"View Team" goes here</MudButton>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary">"Delete Team" goes here</MudButton>
+    </MudCardActions>
+</MudCard>
+<br>
+@*I think the view team button just displays them under the card*@
+
+<MudCard>
+    <MudCardContent>
+        <MudText>Name of team goes here</MudText>
+        <MudText Typo="Typo.body2">Images of pokemon go here</MudText>
+    </MudCardContent>
+    <MudCardActions>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary">"View Team" goes here</MudButton>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary">"Delete Team" goes here</MudButton>
+    </MudCardActions>
+</MudCard>
+<br>
+
+@code {
+    
+}

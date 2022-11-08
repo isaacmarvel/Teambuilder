@@ -1,0 +1,79 @@
+﻿@page "/NewTeam"
+@using PokeTeamBuilder.Core
+@inject HttpClient Http     
+
+
+
+<PageTitle>New Team</PageTitle>
+
+<MudText Typo="Typo.h3" GutterBottom="true">New Team</MudText>
+<MudCard>
+    <MudCardContent>
+        <MudText>Image of pokemon selected goes here, otherwise placeholder</MudText>
+    </MudCardContent>
+    <MudCardActions>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary">Search pokemon</MudButton>
+    </MudCardActions>
+</MudCard>
+<br>
+
+<MudPaper Width="300px">
+    <MudList Clickable="true">
+        <MudListItem Text="pokemon1" Icon="@Icons.Material.Filled.Inbox" />
+        <MudDivider />
+        <MudListItem Text="pokemon2" Icon="@Icons.Material.Filled.Inbox" />
+    </MudList>
+</MudPaper>
+
+@if (_pokemons == null)
+{
+    <p><em>Loading...</em></p>
+}
+    else
+{
+foreach (var pokemon in _pokemons.Results)
+    {
+        <p>@pokemon.Name</p>
+    }
+}
+
+@*  
+<h1>Pokemon</h1>
+
+<p></p>
+
+@if (pokemons == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    @foreach (var n in pokemons.results)
+    {
+        <div class="card" style="width: 18rem;">
+            <img src=@n.url class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">@n.name</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+    }
+
+
+    @pokemons.count
+    <br />
+
+    @offset
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            @for (int b = 0; b < pokemons.count; b += 20)
+            {
+                int local_b = b;
+                <li class="page-item"><button class="page-link" @onclick="() => Paginate(local_b)">@b</button></li>
+            }
+        </ul>
+    </nav>
+}*@
+
+
