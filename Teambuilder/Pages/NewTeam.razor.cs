@@ -6,17 +6,30 @@ namespace PokeTeamBuilder.Blazor.Pages
     public partial class NewTeam
     {
         private PokemonApiResult _pokemons;
+        private PokemonDetail pokemonDetails;
+        private int limit = 20;
+        private int offset = 0;
+        protected async Task FetchPokemonList()
+        {
+            _pokemons = await Http.GetFromJsonAsync<PokemonApiResult>($"https://pokeapi.co/api/v2/pokemon/?offset={offset}&limit={limit}");
+            foreach (var poke in _pokemons.Results)
+            {
+                pokemonDetails = await Http.GetFromJsonAsync<PokemonDetail>(poke.Url);
 
+                poke.Url = pokemonDetails.sprites.front_default;
+            }
+        }
         protected override async Task OnInitializedAsync()
         {
-            _pokemons = await Http.GetFromJsonAsync<PokemonApiResult>($"https://pokeapi.co/api/v2/pokemon/");
+            await FetchPokemonList();
         }
     }
 }
 
 
 
-//private PokemonList pokemons;
+
+//        private PokemonList pokemons;
 //        private PokemonDetail pokemonDetails;
 //        private int limit = 20;
 //        private int offset = 0;

@@ -32,4 +32,15 @@ namespace PokeTeamBuilder.Core
         public List<Pokemon> Results { get; set; }
     }
 
+
+    public class PokemonDetail
+    {
+        public PokemonSprites sprites { get; set; }
+    }
+
+    public class PokemonSprites
+    {
+        public string front_default { get; set; }
+    }
+
 }

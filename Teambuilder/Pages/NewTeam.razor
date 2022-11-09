@@ -16,24 +16,20 @@
     </MudCardActions>
 </MudCard>
 <br>
-
-<MudPaper Width="300px">
-    <MudList Clickable="true">
-        <MudListItem Text="pokemon1" Icon="@Icons.Material.Filled.Inbox" />
-        <MudDivider />
-        <MudListItem Text="pokemon2" Icon="@Icons.Material.Filled.Inbox" />
-    </MudList>
-</MudPaper>
-
 @if (_pokemons == null)
 {
     <p><em>Loading...</em></p>
 }
-    else
+else
 {
-foreach (var pokemon in _pokemons.Results)
-    {
-        <p>@pokemon.Name</p>
+    foreach (var pokemon in _pokemons.Results)
+        {
+            <MudPaper Width="300px">
+                <MudList Clickable="true">
+                <MudListItem Text="@pokemon.Name" Icon="@Icons.Material.Filled.Inbox" />
+                </MudList>
+            </MudPaper>
+            <img src=@pokemon.Url>
     }
 }
 
