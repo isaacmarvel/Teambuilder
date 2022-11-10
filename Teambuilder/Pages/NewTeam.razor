@@ -24,12 +24,12 @@ else
 {
     foreach (var pokemon in _pokemons.Results)
         {
+            <MudImage Src=@pokemon.Url Alt="image of respective pokemon"/>
             <MudPaper Width="300px">
                 <MudList Clickable="true">
-                <MudListItem Text="@pokemon.Name" Icon="@Icons.Material.Filled.Inbox" />
+                <MudListItem Text="@pokemon.Name" />
                 </MudList>
             </MudPaper>
-            <img src=@pokemon.Url>
     }
 }
 
