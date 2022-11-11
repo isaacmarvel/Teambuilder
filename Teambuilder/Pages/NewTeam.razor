@@ -1,6 +1,6 @@
 ﻿@page "/NewTeam"
 @using PokeTeamBuilder.Core
-@inject HttpClient Http     
+@inject HttpClient Http
 
 
 
@@ -15,6 +15,14 @@
         <MudButton Variant="Variant.Filled" Color="Color.Primary">Search pokemon</MudButton>
     </MudCardActions>
 </MudCard>
+
+<ul>
+    @foreach (var mon in PokemonTeam)
+    {
+        <li>@mon</li>
+    }
+</ul>
+
 <br>
 @if (_pokemons == null)
 {
@@ -23,17 +31,26 @@
 else
 {
     foreach (var pokemon in _pokemons.Results)
-        {
-            <MudImage Src=@pokemon.Url Alt="image of respective pokemon" />
-            <MudPaper Width="300px">
-                <MudList Clickable="true">
-                <MudListItem Text="@pokemon.Name" />
-                </MudList>
-            </MudPaper>
+    {
+
+        <MudImage Src=@pokemon.Url Alt="image of respective pokemon" />
+        <MudPaper Width="200px">
+            <MudList Clickable="true">
+                <MudButton @onclick="() => SetPokemon(pokemon.Name)">Add @pokemon.Name to team.</MudButton>
+            </MudList>
+        </MudPaper>
+
     }
+
+    @_pokemons.Count
+    @offset
+    <MudButton @onclick="() => NextButton(offset)">Next</MudButton>
+    
 }
 
-@*  
+
+
+@*
 <h1>Pokemon</h1>
 
 <p></p>

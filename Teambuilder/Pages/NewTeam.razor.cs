@@ -1,4 +1,5 @@
 ﻿using PokeTeamBuilder.Core;
+using System.ComponentModel;
 using System.Net.Http.Json;
 
 namespace PokeTeamBuilder.Blazor.Pages
@@ -7,11 +8,11 @@ namespace PokeTeamBuilder.Blazor.Pages
     {
         private PokemonApiResult _pokemons;
         private PokemonDetail pokemonDetails;
-        private int limit = 20;
         private int offset = 0;
-        protected async Task FetchPokemonList()
+
+        protected async Task FetchPokemonList(int offset)
         {
-            _pokemons = await Http.GetFromJsonAsync<PokemonApiResult>($"https://pokeapi.co/api/v2/pokemon/?offset={offset}&limit={limit}");
+            _pokemons = await Http.GetFromJsonAsync<PokemonApiResult>($"https://pokeapi.co/api/v2/pokemon/?offset={offset}");
             foreach (var poke in _pokemons.Results)
             {
                 pokemonDetails = await Http.GetFromJsonAsync<PokemonDetail>(poke.Url);
@@ -21,8 +22,33 @@ namespace PokeTeamBuilder.Blazor.Pages
         }
         protected override async Task OnInitializedAsync()
         {
-            await FetchPokemonList();
+            await FetchPokemonList(offset);
         }
+
+        
+
+        private List<string> PokemonTeam = new();
+        private void SetPokemon(string pokemon)
+        {
+            if (PokemonTeam.Count < 7)
+            {
+                PokemonTeam.Add(pokemon);
+            }
+
+        }
+
+        private async Task NextButton(int offset)
+        {
+            offset = 20;
+            await FetchPokemonList(offset);
+            await InvokeAsync(StateHasChanged);
+        }
+
+        //private void PreviousButton(int offset)
+        //{
+
+        //}
+
     }
 }
 
