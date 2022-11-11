@@ -25,7 +25,7 @@ namespace PokeTeamBuilder.Blazor.Pages
             await FetchPokemonList(offset);
         }
 
-        
+
 
         private List<string> PokemonTeam = new();
         private void SetPokemon(string pokemon)
@@ -37,20 +37,48 @@ namespace PokeTeamBuilder.Blazor.Pages
 
         }
 
-        private async Task NextButton(int offset)
+        private int IncrementOffset()
         {
-            offset = 20;
-            await FetchPokemonList(offset);
-            await InvokeAsync(StateHasChanged);
+            offset += 20;
+            return offset;
+        }
+        private async Task NextButton()
+        {
+            if (offset > 1154)
+            {
+                Console.WriteLine("You're at the end!");
+            }
+            else
+            {
+                IncrementOffset();
+                await FetchPokemonList(offset);
+                await InvokeAsync(StateHasChanged);
+            }
+
         }
 
-        //private void PreviousButton(int offset)
-        //{
-
-        //}
+        private int ReduceOffset()
+        {
+            offset -= 20;
+            return offset;
+        }
+        private async Task PreviousButton()
+        {
+            if (offset < 20)
+            {
+                Console.WriteLine("You're already at the beginning!");
+            }
+            else
+            {
+                ReduceOffset();
+                await FetchPokemonList(offset);
+                await InvokeAsync(StateHasChanged);
+            }
+        }
 
     }
 }
+
 
 
 

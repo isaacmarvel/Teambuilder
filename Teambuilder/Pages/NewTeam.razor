@@ -43,8 +43,12 @@ else
     }
 
     @_pokemons.Count
-    @offset
-    <MudButton @onclick="() => NextButton(offset)">Next</MudButton>
+    <br />
+    <p>@($"These are pokemon number {offset} through {offset + 20}")</p>
+    <br />
+    <MudButton @onclick="() => PreviousButton()">Previous</MudButton>
+    <MudButton @onclick="() => NextButton()">Next</MudButton>
+   
     
 }
 
