@@ -13,3 +13,5 @@ Code Louisville features included:
 4. Create an additional class which inherits one or more properties from its parent
 5. (Maybe) calculate and display data based on an external factor (ex: get the current date, and display how many days remaining until some event)
 6. (Maybe) create 3 or more unit tests for your application
+
+next steps: add picture to pokemon, send them to database

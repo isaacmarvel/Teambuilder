@@ -28,11 +28,13 @@ namespace PokeTeamBuilder.Blazor.Pages
 
 
         private List<string> PokemonTeam = new();
-        private void SetPokemon(string pokemon)
+        private List<string> PokemonTeamDetails = new();
+        private void SetPokemon(string pokemonName, string pokemonUrl)
         {
             if (PokemonTeam.Count < 7)
             {
-                PokemonTeam.Add(pokemon);
+                PokemonTeam.Add(pokemonName);
+                PokemonTeamDetails.Add(pokemonUrl);
             }
 
         }
