@@ -11,21 +11,31 @@
 <h2>Click each pokemon to edit their details</h2>
 @foreach (var image in PokemonTeamDetails)
 {
-    <img Src="@image" Alt="image of your pokemon" />
+    <img @onclick="@Toggle" Src="@image" Alt="image of your pokemon" />
+    @*Toggle has to assign a property so the html will know what info to put in mudcard.*@
+    
 }
-<MudButton @onclick="() => DeleteTeam()">Delete Team?</MudButton>
+<MudCard hidden="@(!HideLabel)">
+    <MudCardContent>
+        <MudText>@PokemonTeam.Count</MudText>
+    </MudCardContent>
+    <MudCardActions>
+        @*<MudButton Variant="Variant.Text" Color="Color.Primary">Insert remove button here</MudButton>*@
+    </MudCardActions>
+</MudCard>
+
+
+<MudCard>
+    <MudCardActions>
+        <MudButton @onclick="() => DeleteTeam()">Delete Team?</MudButton>
+    </MudCardActions>
+</MudCard>
+
 
 @*@foreach (var mon in PokemonTeam)
 {
 
-    <MudCard>
-        <MudCardContent>
-            <MudText>@mon</MudText>
-        </MudCardContent>
-        <MudCardActions>
-            <MudButton Variant="Variant.Text" Color="Color.Primary">Insert remove button here</MudButton>
-        </MudCardActions>
-    </MudCard>
+    
 }*@
 
 

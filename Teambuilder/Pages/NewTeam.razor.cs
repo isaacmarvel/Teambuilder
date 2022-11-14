@@ -1,6 +1,7 @@
 ﻿using PokeTeamBuilder.Core;
 using System.ComponentModel;
 using System.Net.Http.Json;
+using static MudBlazor.CategoryTypes;
 
 namespace PokeTeamBuilder.Blazor.Pages
 {
@@ -38,10 +39,10 @@ namespace PokeTeamBuilder.Blazor.Pages
             }
 
         }
-        
+
         private void DeleteTeam()
         {
-            foreach(var poke in PokemonTeam.ToList())
+            foreach (var poke in PokemonTeam.ToList())
             {
                 PokemonTeam.Remove(poke);
             }
@@ -90,10 +91,20 @@ namespace PokeTeamBuilder.Blazor.Pages
                 await InvokeAsync(StateHasChanged);
             }
         }
+        private bool HideLabel { get; set; } = false;
+        private void Toggle()
+        {
+            HideLabel = !HideLabel;
+        }
 
     }
+    
 }
 
+
+
+
+         
 
 
 
