@@ -6,11 +6,18 @@
 
 <PageTitle>Select your team</PageTitle>
 
-<MudText Typo="Typo.h3" GutterBottom="true">Your team so far:</MudText>
+<MudText Typo="Typo.h3" GutterBottom="true">Your team:</MudText>
 
-
-@foreach (var mon in PokemonTeam)
+<h2>Click each pokemon to edit their details</h2>
+@foreach (var image in PokemonTeamDetails)
 {
+    <img Src="@image" Alt="image of your pokemon" />
+}
+<MudButton @onclick="() => DeleteTeam()">Delete Team?</MudButton>
+
+@*@foreach (var mon in PokemonTeam)
+{
+
     <MudCard>
         <MudCardContent>
             <MudText>@mon</MudText>
@@ -19,21 +26,11 @@
             <MudButton Variant="Variant.Text" Color="Color.Primary">Insert remove button here</MudButton>
         </MudCardActions>
     </MudCard>
-}
-
-@*@foreach (var image in PokemonTeamDetails)
-{
-    <MudCard>
-        <MudCardContent>
-            <MudImage Src="@image" Alt = "image of your pokemon"/>
-        </MudCardContent>
-        <MudCardActions>
-            <MudImage Variant="Variant.Text" Color="Color.Primary">Insert remove button here</MudImage>
-        </MudCardActions>
-    </MudCard>
 }*@
 
+
 <br>
+<h2>Choose your team from the following:</h2>
 @if (_pokemons == null)
 {
     <p><em>Loading...</em></p>
@@ -46,7 +43,7 @@ else
         <MudImage Src=@pokemon.Url Alt="image of respective pokemon" />
         <MudPaper Width="200px">
             <MudList Clickable="true">
-                <MudButton @onclick="() => SetPokemon(pokemon.Name, pokemon.Url)">Add @pokemon.Name to team.</MudButton>
+                <MudButton @onclick="() => AddToTeam(pokemon.Name, pokemon.Url)">Add @pokemon.Name to team.</MudButton>
             </MudList>
         </MudPaper>
 

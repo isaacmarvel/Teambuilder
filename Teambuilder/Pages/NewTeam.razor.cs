@@ -29,7 +29,7 @@ namespace PokeTeamBuilder.Blazor.Pages
 
         private List<string> PokemonTeam = new();
         private List<string> PokemonTeamDetails = new();
-        private void SetPokemon(string pokemonName, string pokemonUrl)
+        private void AddToTeam(string pokemonName, string pokemonUrl)
         {
             if (PokemonTeam.Count < 7)
             {
@@ -37,6 +37,19 @@ namespace PokeTeamBuilder.Blazor.Pages
                 PokemonTeamDetails.Add(pokemonUrl);
             }
 
+        }
+        
+        private void DeleteTeam()
+        {
+            foreach(var poke in PokemonTeam.ToList())
+            {
+                PokemonTeam.Remove(poke);
+            }
+            foreach (var poke in PokemonTeamDetails.ToList())
+            {
+                PokemonTeamDetails.Remove(poke);
+            }
+            InvokeAsync(StateHasChanged);
         }
 
         private int IncrementOffset()
