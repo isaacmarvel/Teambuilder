@@ -11,19 +11,42 @@
 <h2>Click each pokemon to edit their details</h2>
 @foreach (var image in PokemonTeamDetails)
 {
-    <img @onclick="() => SetPokemon(PokemonTeamDetails.Count)" Src="@image" Alt="image of your pokemon" />
-    @*Toggle has to assign a property so the html will know what info to put in mudcard.*@
-    
+    <img @onclick="() => SetPokemon()" Src="@image" Alt="image of your pokemon" />
 }
 
-<MudCard hidden="@(!HideLabel)">
+
+<MudCard hidden="@(ShowLabel)">
     <MudCardContent>
-        <MudText>@PokemonTeam.Count</MudText>
+        <MudText>@PokemonTeam[0]</MudText>
     </MudCardContent>
-    <MudCardActions>
-        @*<MudButton Variant="Variant.Text" Color="Color.Primary">Insert remove button here</MudButton>*@
-    </MudCardActions>
 </MudCard>
+<MudCard hidden="@(ShowLabel)">
+    <MudCardContent>
+        <MudText>@PokemonTeam[1]</MudText>
+    </MudCardContent>
+</MudCard>
+<MudCard hidden="@(ShowLabel)">
+    <MudCardContent>
+        <MudText>@PokemonTeam[2]</MudText>
+    </MudCardContent>
+</MudCard>
+<MudCard hidden="@(ShowLabel)">
+    <MudCardContent>
+        <MudText>@PokemonTeam[3]</MudText>
+    </MudCardContent>
+</MudCard>
+<MudCard hidden="@(ShowLabel)">
+    <MudCardContent>
+        <MudText>@PokemonTeam[4]</MudText>
+    </MudCardContent>
+</MudCard>
+<MudCard hidden="@(ShowLabel)">
+    <MudCardContent>
+        <MudText>@PokemonTeam[5]</MudText>
+    </MudCardContent>
+</MudCard>
+
+
 
 
 
@@ -58,10 +81,10 @@ else
         </MudPaper>
 
     }
-    <br /> 
+    <br />
     <p>There are @_pokemons.Count total pokemon.</p>
     <br />
-    
+
     <br />
     <MudButton @onclick="() => PreviousButton()">Previous</MudButton>
     <MudButton @onclick="() => NextButton()">Next</MudButton>

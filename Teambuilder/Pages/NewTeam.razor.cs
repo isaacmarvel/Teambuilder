@@ -26,9 +26,7 @@ namespace PokeTeamBuilder.Blazor.Pages
             await FetchPokemonList(offset);
         }
 
-
-
-        private List<string> PokemonTeam = new();
+        private List<string> PokemonTeam = new(); //can you set a default value for a list item? Default if empty?
         private List<string> PokemonTeamDetails = new();
         private void AddToTeam(string pokemonName, string pokemonUrl)
         {
@@ -91,51 +89,20 @@ namespace PokeTeamBuilder.Blazor.Pages
                 await InvokeAsync(StateHasChanged);
             }
         }
-        private bool HideLabel { get; set; } = false;
-        private string pokemon1;
-        private string pokemon2;
-        private string pokemon3;
-        private string pokemon4;
-        private string pokemon5;
-        private string pokemon6;
-        private void SetPokemon(int pokemonNumber)
+        private bool ShowLabel { get; set; } = true;
+
+        private void SetPokemon()
         {
             foreach (var mon in PokemonTeam)
             {
-                switch (pokemonNumber)
-                {
-                    case 1:
-                        pokemon1 = mon;
-                        break;
-                    case 2:
-                        pokemon2 = mon;
-                        break;
-                    case 3:
-                        pokemon3 = mon;
-                        break;
-                    case 4:
-                        pokemon4 = mon;
-                        break;
-                    case 5:
-                        pokemon5 = mon;
-                        break;
-                    case 6:
-                        pokemon6 = mon;
-                        break;
-
-                }
                 Toggle();
-                //next, set 6 html elements to show or hide based on each pokemon's data.
             }
-
-
         }
 
         private void Toggle()
         {
-            HideLabel = !HideLabel;
+            ShowLabel = !ShowLabel;
         }
-
     }
 
 }
