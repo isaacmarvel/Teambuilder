@@ -26,7 +26,7 @@ namespace PokeTeamBuilder.Blazor.Pages
             await FetchPokemonList(offset);
         }
 
-        private List<string> PokemonTeam = new(); //can you set a default value for a list item? Default if empty?
+        private List<string> PokemonTeam = new(); 
         private List<string> PokemonTeamDetails = new();
         private void AddToTeam(string pokemonName, string pokemonUrl)
         {
@@ -38,7 +38,6 @@ namespace PokeTeamBuilder.Blazor.Pages
 
         }
 
-        //Doesn't delete PokemonTeam
         private void DeleteTeam()
         {
             foreach (var poke in PokemonTeam.ToList())
@@ -49,6 +48,12 @@ namespace PokeTeamBuilder.Blazor.Pages
             {
                 PokemonTeamDetails.Remove(poke);
             }
+            HideLabel1 = true;
+            HideLabel2 = true;
+            HideLabel3 = true;
+            HideLabel4 = true;
+            HideLabel5 = true;
+            HideLabel6 = true;
             InvokeAsync(StateHasChanged);
         }
 
@@ -90,47 +95,40 @@ namespace PokeTeamBuilder.Blazor.Pages
                 await InvokeAsync(StateHasChanged);
             }
         }
-        private bool ShowLabel { get; set; } = true;
-        private bool ShowLabel1 { get; set; } = true;
-        private bool ShowLabel2 { get; set; } = true;
-        private bool ShowLabel3 { get; set; } = true;
-        private bool ShowLabel4 { get; set; } = true;
-        private bool ShowLabel5 { get; set; } = true;
-        private bool ShowLabel6 { get; set; } = true;
+        private bool HideLabel1 { get; set; } = true;
+        private bool HideLabel2 { get; set; } = true;
+        private bool HideLabel3 { get; set; } = true;
+        private bool HideLabel4 { get; set; } = true;
+        private bool HideLabel5 { get; set; } = true;
+        private bool HideLabel6 { get; set; } = true;
 
-        //private void SetPokemon()
-        //{
-        //    foreach (var mon in PokemonTeam)
-        //    {
-        //        Toggle();
-        //    }
-        //}
 
         private void Toggle(string image)
         {
-            if(image == PokemonTeamDetails[0])
+            if (image == PokemonTeamDetails[0])
             {
-                ShowLabel1 = !ShowLabel1;
-            } else if (image == PokemonTeamDetails[1])
+                HideLabel1 = !HideLabel1;
+            }
+            else if (image == PokemonTeamDetails[1])
             {
-                ShowLabel2 = !ShowLabel2;
+                HideLabel2 = !HideLabel2;
             }
             else if (image == PokemonTeamDetails[2])
             {
-                ShowLabel3 = !ShowLabel3;
-            } else if (image == PokemonTeamDetails[3])
+                HideLabel3 = !HideLabel3;
+            }
+            else if (image == PokemonTeamDetails[3])
             {
-                ShowLabel4 = !ShowLabel4;
+                HideLabel4 = !HideLabel4;
             }
             else if (image == PokemonTeamDetails[4])
             {
-                ShowLabel5 = !ShowLabel5;
+                HideLabel5 = !HideLabel5;
             }
             else if (image == PokemonTeamDetails[5])
             {
-                ShowLabel6 = !ShowLabel6;
+                HideLabel6 = !HideLabel6;
             }
-            //ShowLabel = !ShowLabel;
         }
     }
 
