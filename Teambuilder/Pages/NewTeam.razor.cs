@@ -38,6 +38,7 @@ namespace PokeTeamBuilder.Blazor.Pages
 
         }
 
+        //Doesn't delete PokemonTeam
         private void DeleteTeam()
         {
             foreach (var poke in PokemonTeam.ToList())
@@ -90,18 +91,46 @@ namespace PokeTeamBuilder.Blazor.Pages
             }
         }
         private bool ShowLabel { get; set; } = true;
+        private bool ShowLabel1 { get; set; } = true;
+        private bool ShowLabel2 { get; set; } = true;
+        private bool ShowLabel3 { get; set; } = true;
+        private bool ShowLabel4 { get; set; } = true;
+        private bool ShowLabel5 { get; set; } = true;
+        private bool ShowLabel6 { get; set; } = true;
 
-        private void SetPokemon()
+        //private void SetPokemon()
+        //{
+        //    foreach (var mon in PokemonTeam)
+        //    {
+        //        Toggle();
+        //    }
+        //}
+
+        private void Toggle(string image)
         {
-            foreach (var mon in PokemonTeam)
+            if(image == PokemonTeamDetails[0])
             {
-                Toggle();
+                ShowLabel1 = !ShowLabel1;
+            } else if (image == PokemonTeamDetails[1])
+            {
+                ShowLabel2 = !ShowLabel2;
             }
-        }
-
-        private void Toggle()
-        {
-            ShowLabel = !ShowLabel;
+            else if (image == PokemonTeamDetails[2])
+            {
+                ShowLabel3 = !ShowLabel3;
+            } else if (image == PokemonTeamDetails[3])
+            {
+                ShowLabel4 = !ShowLabel4;
+            }
+            else if (image == PokemonTeamDetails[4])
+            {
+                ShowLabel5 = !ShowLabel5;
+            }
+            else if (image == PokemonTeamDetails[5])
+            {
+                ShowLabel6 = !ShowLabel6;
+            }
+            //ShowLabel = !ShowLabel;
         }
     }
 

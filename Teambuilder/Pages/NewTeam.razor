@@ -11,36 +11,37 @@
 <h2>Click each pokemon to edit their details</h2>
 @foreach (var image in PokemonTeamDetails)
 {
-    <img @onclick="() => SetPokemon()" Src="@image" Alt="image of your pokemon" />
+    <img @onclick="() => Toggle(image)" Src="@image" Alt="image of your pokemon" />
+    //use PokemonTeamDetails[0] instead of .Count
 }
 
 
-<MudCard hidden="@(ShowLabel)">
+<MudCard hidden="@(ShowLabel1)">
     <MudCardContent>
         <MudText>@PokemonTeam[0]</MudText>
     </MudCardContent>
 </MudCard>
-<MudCard hidden="@(ShowLabel)">
+<MudCard hidden="@(ShowLabel2)">
     <MudCardContent>
         <MudText>@PokemonTeam[1]</MudText>
     </MudCardContent>
 </MudCard>
-<MudCard hidden="@(ShowLabel)">
+<MudCard hidden="@(ShowLabel3)">
     <MudCardContent>
         <MudText>@PokemonTeam[2]</MudText>
     </MudCardContent>
 </MudCard>
-<MudCard hidden="@(ShowLabel)">
+<MudCard hidden="@(ShowLabel4)">
     <MudCardContent>
         <MudText>@PokemonTeam[3]</MudText>
     </MudCardContent>
 </MudCard>
-<MudCard hidden="@(ShowLabel)">
+<MudCard hidden="@(ShowLabel5)">
     <MudCardContent>
         <MudText>@PokemonTeam[4]</MudText>
     </MudCardContent>
 </MudCard>
-<MudCard hidden="@(ShowLabel)">
+<MudCard hidden="@(ShowLabel6)">
     <MudCardContent>
         <MudText>@PokemonTeam[5]</MudText>
     </MudCardContent>
