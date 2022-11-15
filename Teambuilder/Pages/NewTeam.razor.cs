@@ -32,7 +32,7 @@ namespace PokeTeamBuilder.Blazor.Pages
         private List<string> PokemonTeamDetails = new();
         private void AddToTeam(string pokemonName, string pokemonUrl)
         {
-            if (PokemonTeam.Count < 7)
+            if (PokemonTeam.Count < 6)
             {
                 PokemonTeam.Add(pokemonName);
                 PokemonTeamDetails.Add(pokemonUrl);
@@ -92,72 +92,50 @@ namespace PokeTeamBuilder.Blazor.Pages
             }
         }
         private bool HideLabel { get; set; } = false;
+        private string pokemon1;
+        private string pokemon2;
+        private string pokemon3;
+        private string pokemon4;
+        private string pokemon5;
+        private string pokemon6;
+        private void SetPokemon(int pokemonNumber)
+        {
+            foreach (var mon in PokemonTeam)
+            {
+                switch (pokemonNumber)
+                {
+                    case 1:
+                        pokemon1 = mon;
+                        break;
+                    case 2:
+                        pokemon2 = mon;
+                        break;
+                    case 3:
+                        pokemon3 = mon;
+                        break;
+                    case 4:
+                        pokemon4 = mon;
+                        break;
+                    case 5:
+                        pokemon5 = mon;
+                        break;
+                    case 6:
+                        pokemon6 = mon;
+                        break;
+
+                }
+                Toggle();
+                //next, set 6 html elements to show or hide based on each pokemon's data.
+            }
+
+
+        }
+
         private void Toggle()
         {
             HideLabel = !HideLabel;
         }
 
     }
-    
+
 }
-
-
-
-
-         
-
-
-
-
-//        private PokemonList pokemons;
-//        private PokemonDetail pokemonDetails;
-//        private int limit = 20;
-//        private int offset = 0;
-
-//        public void Paginate(int value)
-//        {
-//            Console.WriteLine(value);
-//            this.offset = value;
-//            InvokeAsync(StateHasChanged);
-//        }
-
-//        private async Task FetchPokemonList()
-//        {
-//            pokemons = await Http.GetFromJsonAsync<PokemonList>($"https://pokeapi.co/api/v2/pokemon/?offset={offset}&limit={limit}");
-
-//            foreach (var p in pokemons.results)
-//            {
-//                pokemonDetails = await Http.GetFromJsonAsync<PokemonDetail>(p.url);
-
-//                p.url = pokemonDetails.sprites.front_default;
-//            }
-//        }
-//        protected override async Task OnInitializedAsync()
-//        {
-//            await FetchPokemonList();
-//        }
-
-//        public class PokemonList
-//        {
-//            public int count { get; set; }
-//            public string next { get; set; }
-//            public List<Pokemon> results { get; set; }
-//        }
-
-//        public class Pokemon
-//        {
-//            public string name { get; set; }
-//            public string url { get; set; }
-//        }
-
-//        public class PokemonDetail
-//        {
-//            public PokemonSprites sprites { get; set; }
-//        }
-
-//        public class PokemonSprites
-//        {
-//            public string front_default { get; set; }
-//        }
-//    }
-//}

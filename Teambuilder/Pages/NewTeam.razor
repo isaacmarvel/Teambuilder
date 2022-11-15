@@ -11,10 +11,11 @@
 <h2>Click each pokemon to edit their details</h2>
 @foreach (var image in PokemonTeamDetails)
 {
-    <img @onclick="@Toggle" Src="@image" Alt="image of your pokemon" />
+    <img @onclick="() => SetPokemon(PokemonTeamDetails.Count)" Src="@image" Alt="image of your pokemon" />
     @*Toggle has to assign a property so the html will know what info to put in mudcard.*@
     
 }
+
 <MudCard hidden="@(!HideLabel)">
     <MudCardContent>
         <MudText>@PokemonTeam.Count</MudText>
@@ -25,6 +26,8 @@
 </MudCard>
 
 
+
+
 <MudCard>
     <MudCardActions>
         <MudButton @onclick="() => DeleteTeam()">Delete Team?</MudButton>
@@ -32,15 +35,12 @@
 </MudCard>
 
 
-@*@foreach (var mon in PokemonTeam)
-{
 
-    
-}*@
-
-
-<br>
+<br />
 <h2>Choose your team from the following:</h2>
+<br />
+<p>@($"These are pokemon {offset} through {offset + 20}, going by Pokedex number:")</p>
+<br />
 @if (_pokemons == null)
 {
     <p><em>Loading...</em></p>
@@ -58,56 +58,13 @@ else
         </MudPaper>
 
     }
-
+    <br /> 
     <p>There are @_pokemons.Count total pokemon.</p>
     <br />
-    <p>@($"These are pokemon {offset} through {offset + 20}, going by Pokedex number")</p>
+    
     <br />
     <MudButton @onclick="() => PreviousButton()">Previous</MudButton>
     <MudButton @onclick="() => NextButton()">Next</MudButton>
 
 
 }
-
-
-
-@*
-<h1>Pokemon</h1>
-
-<p></p>
-
-@if (pokemons == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    @foreach (var n in pokemons.results)
-    {
-        <div class="card" style="width: 18rem;">
-            <img src=@n.url class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">@n.name</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-    }
-
-
-    @pokemons.count
-    <br />
-
-    @offset
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            @for (int b = 0; b < pokemons.count; b += 20)
-            {
-                int local_b = b;
-                <li class="page-item"><button class="page-link" @onclick="() => Paginate(local_b)">@b</button></li>
-            }
-        </ul>
-    </nav>
-}*@
-
-
