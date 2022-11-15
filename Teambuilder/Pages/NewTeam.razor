@@ -9,12 +9,14 @@
 <MudText Typo="Typo.h3" GutterBottom="true">Your team:</MudText>
 
 <h2>Click each pokemon to edit their details</h2>
+<br />
+
 @foreach (var image in PokemonTeamDetails)
 {
     <img @onclick="() => Toggle(image)" Src="@image" Alt="image of your pokemon" />
 }
 
-
+@*foreach loop through these most likely*@
 <MudCard hidden="@(HideLabel1)">
     <MudCardContent>
         <MudText>@PokemonTeam[0]</MudText>

@@ -102,7 +102,11 @@ namespace PokeTeamBuilder.Blazor.Pages
         private bool HideLabel5 { get; set; } = true;
         private bool HideLabel6 { get; set; } = true;
 
+        //have a property that is selected pokemon, bind it to card on page
+        //then in toggle, set that to be whatever pokemon that is that needs to be displayed, or null
 
+        //might want a model that represents an individual pokemon, has property for name, image, stats
+        //so you'd end up with type pokemon instead of strings
         private void Toggle(string image)
         {
             if (image == PokemonTeamDetails[0])
