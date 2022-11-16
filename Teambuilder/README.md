@@ -14,4 +14,4 @@ Code Louisville features included:
 5. (Maybe) calculate and display data based on an external factor (ex: get the current date, and display how many days remaining until some event)
 6. (Maybe) create 3 or more unit tests for your application
 
-next steps: add stats and natures
+next steps: add stats, natures, and items
