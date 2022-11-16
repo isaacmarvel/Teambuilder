@@ -1,0 +1,109 @@
+﻿@page "/NewTeam"
+@using PokeTeamBuilder.Core
+@inject HttpClient Http
+
+@*Would want a team and pokemon table--need to think about relation ship for data--1 to 1, 1 to many*@
+<PageTitle>Select your team</PageTitle>
+
+<MudText Typo="Typo.h3" GutterBottom="true">Your team:</MudText>
+
+<h2>Click each pokemon to edit their details</h2>
+<br />
+
+@foreach (var mon in SelectedPokemon)
+{
+    if (SelectedPokemon != null)
+    {
+        <img @onclick="() => ToggleStatCard(mon)" Src="@mon.MySprite" Alt="image of your pokemon" />
+    }
+}
+@if (CurrentMon != null)
+{
+    //these selects don't currently go anywhere'
+    <MudCard>
+        <MudCardContent>
+            <MudText>Pokemon Name: @CurrentMon.Name</MudText>
+            <br />
+            <label for="Ability">Choose an ability:</label>
+            <select name="Ability" id="Ability">
+                @foreach (var ability in CurrentMon.MyAbilities)
+                {
+                    <option value="@ability.ability.name">@ability.ability.name</option>
+                }
+            </select>
+            <br />
+            <label for="Move1">Choose your first move:</label>
+            <select name="Move1" id="Move1">
+                @foreach (var move in CurrentMon.MyMoves)
+                {
+                    <option value="@move.move.name">@move.move.name</option>
+                }
+            </select>
+            <br />
+            <label for="Move2">Choose your second move:</label>
+            <select name="Move2" id="Move2">
+                @foreach (var move in CurrentMon.MyMoves)
+                {
+                    <option value="@move.move.name">@move.move.name</option>
+                }
+            </select>
+            <br />
+            <label for="Move3">Choose your third move:</label>
+            <select name="Move3" id="Move3">
+                @foreach (var move in CurrentMon.MyMoves)
+                {
+                    <option value="@move.move.name">@move.move.name</option>
+                }
+            </select>
+            <br />
+            <label for="Move4">Choose your fourth move:</label>
+            <select name="Move4" id="Move4">
+                @foreach (var move in CurrentMon.MyMoves)
+                {
+                    <option value="@move.move.name">@move.move.name</option>
+                }
+            </select>
+        </MudCardContent>
+    </MudCard>
+}
+<MudCard>
+    <MudCardActions>
+        <MudButton @onclick="() => DeleteTeam()">Delete Team?</MudButton>
+    </MudCardActions>
+</MudCard>
+@*<MudCard>
+    <MudCardActions>
+        <MudButton @onclick="() => SaveTeamToDb()">Delete Team?</MudButton>
+    </MudCardActions>
+</MudCard>*@
+
+<br />
+<h2>Choose your team from the following:</h2>
+<br />
+<p>@($"These are pokemon {offset} through {offset + 20}, going by Pokedex number:")</p>
+<br />
+
+@if (pokemon == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    foreach (var p in pokemon)
+    {
+        <MudImage Src=@p.MySprite Alt="image of respective pokemon" />
+        <MudPaper Width="200px">
+            <MudList Clickable="true">
+                <MudButton @onclick="() => AddToTeam(p)">Add @p.Name to team.</MudButton>
+            </MudList>
+        </MudPaper>
+
+    }
+    <br />
+    <p>There are @pokemon.Count total pokemon.</p>
+    <br />
+
+    <br />
+    <MudButton @onclick="() => PreviousButton()">Previous</MudButton>
+    <MudButton @onclick="() => NextButton()">Next</MudButton>
+}

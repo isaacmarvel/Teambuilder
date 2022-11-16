@@ -8,6 +8,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokeTeamBuilder.Core", "Pok
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokeTeamBuilder.Blazor", "Teambuilder\PokeTeamBuilder.Blazor.csproj", "{B3BA3DCB-80CB-4F8B-BCD9-CD4A220F337A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokeTeamBuilder.BlazorServer", "PokeTeamBuilder.BlazorServer\PokeTeamBuilder.BlazorServer.csproj", "{BE65D592-6A8D-4E9A-9D6B-E5ADA59C769D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{B3BA3DCB-80CB-4F8B-BCD9-CD4A220F337A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3BA3DCB-80CB-4F8B-BCD9-CD4A220F337A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3BA3DCB-80CB-4F8B-BCD9-CD4A220F337A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE65D592-6A8D-4E9A-9D6B-E5ADA59C769D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE65D592-6A8D-4E9A-9D6B-E5ADA59C769D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE65D592-6A8D-4E9A-9D6B-E5ADA59C769D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE65D592-6A8D-4E9A-9D6B-E5ADA59C769D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

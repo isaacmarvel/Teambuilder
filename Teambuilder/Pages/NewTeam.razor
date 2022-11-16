@@ -2,6 +2,7 @@
 @using PokeTeamBuilder.Core
 @inject HttpClient Http
 
+@*Would want a team and pokemon table--need to think about relation ship for data--1 to 1, 1 to many*@
 <PageTitle>Select your team</PageTitle>
 
 <MudText Typo="Typo.h3" GutterBottom="true">Your team:</MudText>
@@ -18,6 +19,7 @@
 }
 @if (CurrentMon != null)
 {
+    //these selects don't currently go anywhere'
     <MudCard>
         <MudCardContent>
             <MudText>Pokemon Name: @CurrentMon.Name</MudText>
@@ -61,20 +63,6 @@
                     <option value="@move.move.name">@move.move.name</option>
                 }
             </select>
-
-            @*<MudText>
-                Pokemon abilities: @foreach (var ability in CurrentMon.MyAbilities)
-                {
-                    <MudText>@ability.ability.name</MudText>
-                }
-            </MudText>*@
-            @*<br />*@
-            @*<MudText>
-                Pokemon moves: @foreach (var move in CurrentMon.MyMoves)
-                {
-                    <MudText>@move.move.name</MudText>
-                }
-            </MudText>*@
         </MudCardContent>
     </MudCard>
 }

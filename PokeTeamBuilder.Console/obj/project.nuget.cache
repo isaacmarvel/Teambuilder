@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "1/q/nurk5sD6I9uzjebrglYaLI8gkwxLUbwIdMcYvJaJwuSSHdRpHfVdRuTz2zuYAzvrbgFsK2qv79or5pmadg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\rawkh\\source\\repos\\PokeTeamBuilder\\PokeTeamBuilder.Console\\PokeTeamBuilder.Console.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\rawkh\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
