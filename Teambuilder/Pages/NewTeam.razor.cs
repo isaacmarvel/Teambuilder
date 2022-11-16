@@ -45,13 +45,7 @@ namespace PokeTeamBuilder.Blazor.Pages
         private void DeleteTeam()
         {
             SelectedPokemon.Clear();
-            HideLabel1 = true;
-            HideLabel2 = true;
-            HideLabel3 = true;
-            HideLabel4 = true;
-            HideLabel5 = true;
-            HideLabel6 = true;
-            InvokeAsync(StateHasChanged);
+            CurrentMon = null;
         }
 
         private int IncrementOffset()
@@ -92,48 +86,13 @@ namespace PokeTeamBuilder.Blazor.Pages
                 await InvokeAsync(StateHasChanged);
             }
         }
-        private bool HideLabel1 { get; set; } = true;
-        private bool HideLabel2 { get; set; } = true;
-        private bool HideLabel3 { get; set; } = true;
-        private bool HideLabel4 { get; set; } = true;
-        private bool HideLabel5 { get; set; } = true;
-        private bool HideLabel6 { get; set; } = true;
 
-        //have a property that is selected pokemon, bind it to card on page
-        //then in toggle, set that to be whatever pokemon that is that needs to be displayed, or null
-        //may wannad oa null check
-        //have toggle method set selected property to something different
-
-        //might want a model that represents an individual pokemon, has property for name, image, stats
-        //so you'd end up with type pokemon instead of strings
-        
-        private void Toggle(string image)
+        private Pokemon CurrentMon;
+        private void ToggleStatCard(Pokemon mon)
         {
-            if (image == PokemonTeamDetails[0])
-            {
-                HideLabel1 = !HideLabel1;
-            }
-            else if (image == PokemonTeamDetails[1])
-            {
-                HideLabel2 = !HideLabel2;
-            }
-            else if (image == PokemonTeamDetails[2])
-            {
-                HideLabel3 = !HideLabel3;
-            }
-            else if (image == PokemonTeamDetails[3])
-            {
-                HideLabel4 = !HideLabel4;
-            }
-            else if (image == PokemonTeamDetails[4])
-            {
-                HideLabel5 = !HideLabel5;
-            }
-            else if (image == PokemonTeamDetails[5])
-            {
-                HideLabel6 = !HideLabel6;
-            }
+            CurrentMon = mon;
         }
+        
     }
 
 }

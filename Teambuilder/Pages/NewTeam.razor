@@ -16,51 +16,21 @@
     <img @onclick="() => Toggle(image)" Src="@image" Alt="image of your pokemon" />
 }*@
 
-@foreach(var blank in SelectedPokemon)
+@foreach(var mon in SelectedPokemon)
 {
-
+    if (SelectedPokemon != null)
+    {
+        <img @onclick="() => ToggleStatCard(mon)" Src="@mon.Url" Alt="image of your pokemon" />
+    }
 }
-if (SelectedPokemon != null)
+@if (CurrentMon != null)
 {
-    <div>
-        <h1>@SelectedPokemon.Name</h1>
-        <img src="@SelectedPokemon.Url"/>
-    </div>
+<MudCard>
+    <MudCardContent>
+        <MudText>@CurrentMon.Name</MudText>
+    </MudCardContent>
+</MudCard>
 }
-
-
-@*foreach loop through these most likely*@
-<MudCard hidden="@(HideLabel1)">
-    <MudCardContent>
-        <MudText>@PokemonTeam[0]</MudText>
-    </MudCardContent>
-</MudCard>
-<MudCard hidden="@(HideLabel2)">
-    <MudCardContent>
-        <MudText>@PokemonTeam[1]</MudText>
-    </MudCardContent>
-</MudCard>
-<MudCard hidden="@(HideLabel3)">
-    <MudCardContent>
-        <MudText>@PokemonTeam[2]</MudText>
-    </MudCardContent>
-</MudCard>
-<MudCard hidden="@(HideLabel4)">
-    <MudCardContent>
-        <MudText>@PokemonTeam[3]</MudText>
-    </MudCardContent>
-</MudCard>
-<MudCard hidden="@(HideLabel5)">
-    <MudCardContent>
-        <MudText>@PokemonTeam[4]</MudText>
-    </MudCardContent>
-</MudCard>
-<MudCard hidden="@(HideLabel6)">
-    <MudCardContent>
-        <MudText>@PokemonTeam[5]</MudText>
-    </MudCardContent>
-</MudCard>
-
 <MudCard>
     <MudCardActions>
         <MudButton @onclick="() => DeleteTeam()">Delete Team?</MudButton>
@@ -72,6 +42,7 @@ if (SelectedPokemon != null)
 <br />
 <p>@($"These are pokemon {offset} through {offset + 20}, going by Pokedex number:")</p>
 <br />
+
 @if (pokemon == null)
 {
     <p><em>Loading...</em></p>
