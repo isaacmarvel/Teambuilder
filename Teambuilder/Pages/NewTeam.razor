@@ -2,7 +2,7 @@
 @using PokeTeamBuilder.Core
 @inject HttpClient Http
 
-
+@*bind everything to pokemon property*@
 
 <PageTitle>Select your team</PageTitle>
 
@@ -11,10 +11,23 @@
 <h2>Click each pokemon to edit their details</h2>
 <br />
 
-@foreach (var image in PokemonTeamDetails)
+@*@foreach (var image in PokemonTeamDetails)
 {
     <img @onclick="() => Toggle(image)" Src="@image" Alt="image of your pokemon" />
+}*@
+
+@foreach(var blank in SelectedPokemon)
+{
+
 }
+if (SelectedPokemon != null)
+{
+    <div>
+        <h1>@SelectedPokemon.Name</h1>
+        <img src="@SelectedPokemon.Url"/>
+    </div>
+}
+
 
 @*foreach loop through these most likely*@
 <MudCard hidden="@(HideLabel1)">
@@ -59,25 +72,24 @@
 <br />
 <p>@($"These are pokemon {offset} through {offset + 20}, going by Pokedex number:")</p>
 <br />
-@if (_pokemons == null)
+@if (pokemon == null)
 {
     <p><em>Loading...</em></p>
 }
 else
 {
-    foreach (var pokemon in _pokemons.Results)
+    foreach (var p in pokemon)
     {
-
-        <MudImage Src=@pokemon.Url Alt="image of respective pokemon" />
+        <MudImage Src=@p.Url Alt="image of respective pokemon" />
         <MudPaper Width="200px">
             <MudList Clickable="true">
-                <MudButton @onclick="() => AddToTeam(pokemon.Name, pokemon.Url)">Add @pokemon.Name to team.</MudButton>
+                <MudButton @onclick="() => AddToTeam(p)">Add @p.Name to team.</MudButton>
             </MudList>
         </MudPaper>
 
     }
     <br />
-    <p>There are @_pokemons.Count total pokemon.</p>
+    <p>There are @pokemon.Count total pokemon.</p>
     <br />
 
     <br />

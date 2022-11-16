@@ -7,47 +7,44 @@ namespace PokeTeamBuilder.Blazor.Pages
 {
     public partial class NewTeam
     {
-        private PokemonApiResult _pokemons;
-        private PokemonDetail pokemonDetails;
+        private List<Pokemon> pokemon;
         private int offset = 0;
 
         protected async Task FetchPokemonList(int offset)
         {
-            _pokemons = await Http.GetFromJsonAsync<PokemonApiResult>($"https://pokeapi.co/api/v2/pokemon/?offset={offset}");
-            foreach (var poke in _pokemons.Results)
-            {
-                pokemonDetails = await Http.GetFromJsonAsync<PokemonDetail>(poke.Url);
+            var apiResult = await Http.GetFromJsonAsync<PokemonApiResult>($"https://pokeapi.co/api/v2/pokemon/?offset={offset}");
 
-                poke.Url = pokemonDetails.sprites.front_default;
+            foreach(var p in apiResult.Results)
+            {
+                var pokemonDetails = await Http.GetFromJsonAsync<PokemonDetail>(p.Url);
+
+                p.Url = pokemonDetails.sprites.front_default;
             }
+            pokemon = apiResult.Results;
         }
         protected override async Task OnInitializedAsync()
         {
             await FetchPokemonList(offset);
         }
 
-        private List<string> PokemonTeam = new(); 
-        private List<string> PokemonTeamDetails = new();
-        private void AddToTeam(string pokemonName, string pokemonUrl)
-        {
-            if (PokemonTeam.Count < 6)
-            {
-                PokemonTeam.Add(pokemonName);
-                PokemonTeamDetails.Add(pokemonUrl);
-            }
+        //private Pokemon SelectedPokemon = new Pokemon()
+        //{
+        //    Name = "Bulbasaur",
+        //    Url = "https://upload.wikimedia.org/wikipedia/commons/c/c0/Nicolas_Cage_Deauville_2013.jpg"
+        //};
 
+        private List<Pokemon> SelectedPokemon = new(); 
+        private void AddToTeam(Pokemon pokemon)
+        {
+            if (SelectedPokemon.Count < 6)
+            {
+                SelectedPokemon.Add(pokemon);
+            }
         }
 
         private void DeleteTeam()
         {
-            foreach (var poke in PokemonTeam.ToList())
-            {
-                PokemonTeam.Remove(poke);
-            }
-            foreach (var poke in PokemonTeamDetails.ToList())
-            {
-                PokemonTeamDetails.Remove(poke);
-            }
+            SelectedPokemon.Clear();
             HideLabel1 = true;
             HideLabel2 = true;
             HideLabel3 = true;
@@ -104,9 +101,12 @@ namespace PokeTeamBuilder.Blazor.Pages
 
         //have a property that is selected pokemon, bind it to card on page
         //then in toggle, set that to be whatever pokemon that is that needs to be displayed, or null
+        //may wannad oa null check
+        //have toggle method set selected property to something different
 
         //might want a model that represents an individual pokemon, has property for name, image, stats
         //so you'd end up with type pokemon instead of strings
+        
         private void Toggle(string image)
         {
             if (image == PokemonTeamDetails[0])
