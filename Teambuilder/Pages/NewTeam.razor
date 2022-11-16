@@ -2,7 +2,6 @@
 @using PokeTeamBuilder.Core
 @inject HttpClient Http
 
-
 <PageTitle>Select your team</PageTitle>
 
 <MudText Typo="Typo.h3" GutterBottom="true">Your team:</MudText>
@@ -10,20 +9,34 @@
 <h2>Click each pokemon to edit their details</h2>
 <br />
 
-@foreach(var mon in SelectedPokemon)
+@foreach (var mon in SelectedPokemon)
 {
     if (SelectedPokemon != null)
     {
-        <img @onclick="() => ToggleStatCard(mon)" Src="@mon.Url" Alt="image of your pokemon" />
+        <img @onclick="() => ToggleStatCard(mon)" Src="@mon.MySprite" Alt="image of your pokemon" />
     }
 }
 @if (CurrentMon != null)
 {
-<MudCard>
-    <MudCardContent>
-        <MudText>@CurrentMon.Name</MudText>
-    </MudCardContent>
-</MudCard>
+    <MudCard>
+        <MudCardContent>
+            <MudText>Pokemon Name: @CurrentMon.Name</MudText>
+               <br />
+            <MudText>
+                Pokemon abilities: @foreach (var ability in CurrentMon.MyAbilities)
+                {
+                    <MudText>@ability.ability.name</MudText>
+                }
+            </MudText>
+            <br />
+            <MudText>
+                Pokemon moves: @foreach (var move in CurrentMon.MyMoves)
+                {
+                    <MudText>@move.move.name</MudText>
+                }
+            </MudText>
+        </MudCardContent>
+    </MudCard>
 }
 <MudCard>
     <MudCardActions>
@@ -45,7 +58,7 @@ else
 {
     foreach (var p in pokemon)
     {
-        <MudImage Src=@p.Url Alt="image of respective pokemon" />
+        <MudImage Src=@p.MySprite Alt="image of respective pokemon" />
         <MudPaper Width="200px">
             <MudList Clickable="true">
                 <MudButton @onclick="() => AddToTeam(p)">Add @p.Name to team.</MudButton>

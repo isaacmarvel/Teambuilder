@@ -10,21 +10,38 @@ namespace PokeTeamBuilder.Blazor.Pages
         private List<Pokemon> pokemon;
         private int offset = 0;
 
-        protected async Task FetchPokemonList(int offset)
+        protected async Task PokeApiCall(int offset)
         {
             var apiResult = await Http.GetFromJsonAsync<PokemonApiResult>($"https://pokeapi.co/api/v2/pokemon/?offset={offset}");
 
-            foreach(var p in apiResult.Results)
+            foreach (var p in apiResult.Results)
             {
-                var pokemonDetails = await Http.GetFromJsonAsync<PokemonDetail>(p.Url);
+                var pokemonDetails = await Http.GetFromJsonAsync<Rootobject>(p.Url);
 
-                p.Url = pokemonDetails.sprites.front_default;
+                p.MySprite = pokemonDetails.sprites.front_default;
             }
+
+            foreach (var p in apiResult.Results)
+            {
+                var pokemonDetails = await Http.GetFromJsonAsync<Rootobject>(p.Url);
+
+                p.MyAbilities = pokemonDetails.abilities; 
+            }
+
+            foreach (var p in apiResult.Results)
+            {
+                var pokemonDetails = await Http.GetFromJsonAsync<Rootobject>(p.Url);
+
+                p.MyMoves = pokemonDetails.moves;
+            }
+
+
             pokemon = apiResult.Results;
         }
         protected override async Task OnInitializedAsync()
         {
-            await FetchPokemonList(offset);
+            await PokeApiCall(offset);
+            Console.WriteLine("dog");
         }
 
         private List<Pokemon> SelectedPokemon = new(); 
@@ -56,7 +73,7 @@ namespace PokeTeamBuilder.Blazor.Pages
             else
             {
                 IncrementOffset();
-                await FetchPokemonList(offset);
+                await PokeApiCall(offset);
                 await InvokeAsync(StateHasChanged);
             }
 
@@ -76,7 +93,7 @@ namespace PokeTeamBuilder.Blazor.Pages
             else
             {
                 ReduceOffset();
-                await FetchPokemonList(offset);
+                await PokeApiCall(offset);
                 await InvokeAsync(StateHasChanged);
             }
         }
@@ -85,8 +102,6 @@ namespace PokeTeamBuilder.Blazor.Pages
         private void ToggleStatCard(Pokemon mon)
         {
             CurrentMon = mon;
-        }
-        
+        } 
     }
-
 }
