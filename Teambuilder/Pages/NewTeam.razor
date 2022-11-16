@@ -2,7 +2,6 @@
 @using PokeTeamBuilder.Core
 @inject HttpClient Http
 
-@*bind everything to pokemon property*@
 
 <PageTitle>Select your team</PageTitle>
 
@@ -10,11 +9,6 @@
 
 <h2>Click each pokemon to edit their details</h2>
 <br />
-
-@*@foreach (var image in PokemonTeamDetails)
-{
-    <img @onclick="() => Toggle(image)" Src="@image" Alt="image of your pokemon" />
-}*@
 
 @foreach(var mon in SelectedPokemon)
 {

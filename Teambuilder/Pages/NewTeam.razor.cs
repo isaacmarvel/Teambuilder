@@ -27,12 +27,6 @@ namespace PokeTeamBuilder.Blazor.Pages
             await FetchPokemonList(offset);
         }
 
-        //private Pokemon SelectedPokemon = new Pokemon()
-        //{
-        //    Name = "Bulbasaur",
-        //    Url = "https://upload.wikimedia.org/wikipedia/commons/c/c0/Nicolas_Cage_Deauville_2013.jpg"
-        //};
-
         private List<Pokemon> SelectedPokemon = new(); 
         private void AddToTeam(Pokemon pokemon)
         {
