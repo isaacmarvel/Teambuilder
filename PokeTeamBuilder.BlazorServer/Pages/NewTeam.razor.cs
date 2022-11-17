@@ -54,6 +54,7 @@ namespace PokeTeamBuilder.BlazorServer.Pages
         {
             SelectedPokemon.Clear();
             CurrentMon = null;
+            PokemonTeamMembers.Clear();
         }
 
         private int IncrementOffset()

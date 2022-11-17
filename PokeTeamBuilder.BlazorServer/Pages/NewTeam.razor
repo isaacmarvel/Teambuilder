@@ -4,23 +4,28 @@
 
 @*Need to make it so you can't pick the same pokemon twice'*@
 <PageTitle>Select your team</PageTitle>
+<h1>Teambuilder</h1>
 
-<MudText Typo="Typo.h3" GutterBottom="true">Your team:</MudText>
 
-<h2>Click each pokemon to edit their details</h2>
-<br />
+@if (SelectedPokemon.Count != 0)
+{
+    <MudText Typo="Typo.h3" GutterBottom="true">Your team:</MudText>
+    <h2>Click each pokemon to edit their details</h2>
+    <br />
+}
+
 
 @foreach (var mon in SelectedPokemon)
 {
     if (SelectedPokemon != null)
     {
-        <img @onclick="() => ToggleStatCard(mon)" Src="@mon.PokemonsSprite" Alt="image of your pokemon" />  
+        <img @onclick="() => ToggleStatCard(mon)" Src="@mon.PokemonsSprite" Alt="image of your pokemon" />
     }
-    
+
 }
 @if (PokemonTeamMembers.Count == 5)
 {
-<MudButton @onclick="() => ToggleStatCard(null)">I'm finished!</MudButton>
+    <MudButton @onclick="() => ToggleStatCard(null)">I'm finished!</MudButton>
 }
 
 @if (CurrentMon != null)
@@ -69,12 +74,15 @@
         </MudCardContent>
     </MudCard>
 }
+@if (SelectedPokemon.Count != 0)
+{
+    <MudCard>
+        <MudCardActions>
+            <MudButton @onclick="() => DeleteTeam()">Delete Team?</MudButton>
+        </MudCardActions>
+    </MudCard>
+}
 
-<MudCard>
-    <MudCardActions>
-        <MudButton @onclick="() => DeleteTeam()">Delete Team?</MudButton>
-    </MudCardActions>
-</MudCard>
 
 <br />
 <h2>Choose your team from the following. You can only choose one of each:</h2>
