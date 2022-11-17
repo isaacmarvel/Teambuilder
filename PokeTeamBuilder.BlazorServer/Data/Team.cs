@@ -1,4 +1,4 @@
-﻿namespace PokeTeamBuilder.Blazor.Data
+﻿namespace PokeTeamBuilder.BlazorServer.Data
 {
     public class Team
     {

@@ -1,6 +1,4 @@
-﻿using System.Reflection.Metadata;
-
-namespace PokeTeamBuilder.Blazor.Data
+﻿namespace PokeTeamBuilder.BlazorServer.Data
 {
     public class PokemonTeamMember
     {
