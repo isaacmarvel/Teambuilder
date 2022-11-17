@@ -14,58 +14,96 @@
 {
     if (SelectedPokemon != null)
     {
-        <img @onclick="() => ToggleStatCard(mon)" Src="@mon.MySprite" Alt="image of your pokemon" />
+        <img @onclick="() => ToggleStatCard(mon)" Src="@mon.PokemonsSprite" Alt="image of your pokemon" />
     }
 }
 @if (CurrentMon != null)
 {
-    //these selects don't currently go anywhere'
     <MudCard>
         <MudCardContent>
             <MudText>Pokemon Name: @CurrentMon.Name</MudText>
             <br />
-            <label for="Ability">Choose an ability:</label>
-            <select name="Ability" id="Ability">
-                @foreach (var ability in CurrentMon.MyAbilities)
-                {
-                    <option value="@ability.ability.name">@ability.ability.name</option>
-                }
-            </select>
-            <br />
-            <label for="Move1">Choose your first move:</label>
-            <select name="Move1" id="Move1">
-                @foreach (var move in CurrentMon.MyMoves)
-                {
-                    <option value="@move.move.name">@move.move.name</option>
-                }
-            </select>
-            <br />
-            <label for="Move2">Choose your second move:</label>
-            <select name="Move2" id="Move2">
-                @foreach (var move in CurrentMon.MyMoves)
-                {
-                    <option value="@move.move.name">@move.move.name</option>
-                }
-            </select>
-            <br />
-            <label for="Move3">Choose your third move:</label>
-            <select name="Move3" id="Move3">
-                @foreach (var move in CurrentMon.MyMoves)
-                {
-                    <option value="@move.move.name">@move.move.name</option>
-                }
-            </select>
-            <br />
-            <label for="Move4">Choose your fourth move:</label>
-            <select name="Move4" id="Move4">
-                @foreach (var move in CurrentMon.MyMoves)
-                {
-                    <option value="@move.move.name">@move.move.name</option>
-                }
-            </select>
+            <EditForm Model="@CurrentMon" id="StatSelection">
+                <InputSelect @bind-Value=@CurrentMon.MyAbility>
+                    @foreach (var ability in CurrentMon.PokemonsAbilites)
+                    {
+                        <option value="@ability.ability.name">@ability.ability.name</option>
+                    }
+                </InputSelect>
+                <InputSelect @bind-Value=@CurrentMon.MyMove1>
+                    @foreach (var move in CurrentMon.PokemonsMoves)
+                    {
+                        <option value="@move.move.name">@move.move.name</option>
+                    }
+                </InputSelect>
+                <InputSelect @bind-Value=@CurrentMon.MyMove2>
+                    @foreach (var move in CurrentMon.PokemonsMoves)
+                    {
+                        <option value="@move.move.name">@move.move.name</option>
+                    }
+                </InputSelect>
+                <InputSelect @bind-Value=@CurrentMon.MyMove3>
+                    @foreach (var move in CurrentMon.PokemonsMoves)
+                    {
+                        <option value="@move.move.name">@move.move.name</option>
+                    }
+                </InputSelect>
+                <InputSelect @bind-Value=@CurrentMon.MyMove4>
+                    @foreach (var move in CurrentMon.PokemonsMoves)
+                    {
+                        <option value="@move.move.name">@move.move.name</option>
+                    }
+                </InputSelect>
+                @*<label for="Ability">Choose an ability:</label>
+                <select name="Ability" id="Ability" form="StatSelection" @bind-Value="CurrentMon">
+                    @foreach (var ability in CurrentMon.MyAbilities)
+                    {
+                        <option value="@ability.ability.name">@ability.ability.name</option>
+                    }
+                </select>
+                <br />
+                <label for="Move1">Choose your first move:</label>
+                <select name="Move1" id="Move1" form="StatSelection">
+                    @foreach (var move in CurrentMon.MyMoves)
+                    {
+                        <option value="@move.move.name">@move.move.name</option>
+                    }
+                </select>
+                <br />
+                <label for="Move2">Choose your second move:</label>
+                <select name="Move2" id="Move2" form="StatSelection">
+                    @foreach (var move in CurrentMon.MyMoves)
+                    {
+                        <option value="@move.move.name">@move.move.name</option>
+                    }
+                </select>
+                <br />
+                <label for="Move3">Choose your third move:</label>
+                <select name="Move3" id="Move3" form="StatSelection">
+                    @foreach (var move in CurrentMon.MyMoves)
+                    {
+                        <option value="@move.move.name">@move.move.name</option>
+                    }
+                </select>
+                <br />
+                <label for="Move4">Choose your fourth move:</label>
+                <select name="Move4" id="Move4" form="StatSelection">
+                    @foreach (var move in CurrentMon.MyMoves)
+                    {
+                        <option value="@move.move.name">@move.move.name</option>
+                    }
+                </select>*@
+            </EditForm>
         </MudCardContent>
     </MudCard>
+    //add save pokemon button that saves to property? Definitely save team button.
+    //could have it all save to different property, then toggle stat card resets to different property based on which properties are empty?
+    //may need to put it all in a form so we get a submit button
+    //submit button can set currentmon to pokemon 1 or whatever
+
+    //have toggle button act as submit/save? so it takes all the bind values, saves to a new object, and makes another new one?
 }
+
 <MudCard>
     <MudCardActions>
         <MudButton @onclick="() => DeleteTeam()">Delete Team?</MudButton>
@@ -91,7 +129,7 @@ else
 {
     foreach (var p in pokemon)
     {
-        <MudImage Src=@p.MySprite Alt="image of respective pokemon" />
+        <MudImage Src=@p.PokemonsSprite Alt="image of respective pokemon" />
         <MudPaper Width="200px">
             <MudList Clickable="true">
                 <MudButton @onclick="() => AddToTeam(p)">Add @p.Name to team.</MudButton>

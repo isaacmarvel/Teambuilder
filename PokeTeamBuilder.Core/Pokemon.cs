@@ -17,10 +17,17 @@ namespace PokeTeamBuilder.Core
         [JsonProperty("url")]
         public string Url { get; set; }
 
-        public string MySprite { get; set; }
-        public Ability[] MyAbilities { get; set; }
+        public string PokemonsSprite { get; set; }
+        public Ability[] PokemonsAbilites { get; set; }
+        public Move[] PokemonsMoves { get; set; }
 
-        public Move[] MyMoves { get; set; }
+        public Ability MyAbility { get; set; }
+        public Move MyMove1 { get; set; }
+        public Move MyMove2 { get; set; }
+        public Move MyMove3 { get; set; }
+        public Move MyMove4 { get; set; }
+
+
 
     }
 

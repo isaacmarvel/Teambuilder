@@ -15,21 +15,21 @@ namespace PokeTeamBuilder.BlazorServer.Pages
             {
                 var pokemonDetails = await Http.GetFromJsonAsync<Rootobject>(p.Url);
 
-                p.MySprite = pokemonDetails.sprites.front_default;
+                p.PokemonsSprite = pokemonDetails.sprites.front_default;
             }
 
             foreach (var p in apiResult.Results)
             {
                 var pokemonDetails = await Http.GetFromJsonAsync<Rootobject>(p.Url);
 
-                p.MyAbilities = pokemonDetails.abilities;
+                p.PokemonsAbilites = pokemonDetails.abilities;
             }
 
             foreach (var p in apiResult.Results)
             {
                 var pokemonDetails = await Http.GetFromJsonAsync<Rootobject>(p.Url);
 
-                p.MyMoves = pokemonDetails.moves;
+                p.PokemonsMoves = pokemonDetails.moves;
             }
 
 
@@ -100,5 +100,7 @@ namespace PokeTeamBuilder.BlazorServer.Pages
         {
             CurrentMon = mon;
         }
+
+
     }
 }

@@ -2,7 +2,7 @@
 {
     public class PokemonTeamMember
     {
-        public int Id { get; set; }
+        public int Id { get; set; } //do these need to have pokemon types?
         public string Name { get; set; }
         public string Ability { get; set; }
         public string move1 { get; set; }

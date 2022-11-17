@@ -14,7 +14,7 @@
 {
     if (SelectedPokemon != null)
     {
-        <img @onclick="() => ToggleStatCard(mon)" Src="@mon.MySprite" Alt="image of your pokemon" />
+        <img @onclick="() => ToggleStatCard(mon)" Src="@mon.PokemonsSprite" Alt="image of your pokemon" />
     }
 }
 @if (CurrentMon != null)
@@ -26,7 +26,7 @@
                <br />
                <label for="Ability">Choose an ability:</label>
                <select name="Ability" id="Ability">
-                    @foreach (var ability in CurrentMon.MyAbilities)
+                    @foreach (var ability in CurrentMon.PokemonsAbilites)
                     {
                     <option value="@ability.ability.name">@ability.ability.name</option>
                     }
@@ -34,7 +34,7 @@
             <br />
             <label for="Move1">Choose your first move:</label>
             <select name="Move1" id="Move1">
-                @foreach (var move in CurrentMon.MyMoves)
+                @foreach (var move in CurrentMon.PokemonsMoves)
                 {
                     <option value="@move.move.name">@move.move.name</option>
                 }
@@ -42,7 +42,7 @@
             <br />
             <label for="Move2">Choose your second move:</label>
             <select name="Move2" id="Move2">
-                @foreach (var move in CurrentMon.MyMoves)
+                @foreach (var move in CurrentMon.PokemonsMoves)
                 {
                     <option value="@move.move.name">@move.move.name</option>
                 }
@@ -50,7 +50,7 @@
             <br />
             <label for="Move3">Choose your third move:</label>
             <select name="Move3" id="Move3">
-                @foreach (var move in CurrentMon.MyMoves)
+                @foreach (var move in CurrentMon.PokemonsMoves)
                 {
                     <option value="@move.move.name">@move.move.name</option>
                 }
@@ -58,7 +58,7 @@
             <br />
             <label for="Move4">Choose your fourth move:</label>
             <select name="Move4" id="Move4">
-                @foreach (var move in CurrentMon.MyMoves)
+                @foreach (var move in CurrentMon.PokemonsMoves)
                 {
                     <option value="@move.move.name">@move.move.name</option>
                 }
@@ -91,7 +91,7 @@ else
 {
     foreach (var p in pokemon)
     {
-        <MudImage Src=@p.MySprite Alt="image of respective pokemon" />
+        <MudImage Src=@p.PokemonsSprite Alt="image of respective pokemon" />
         <MudPaper Width="200px">
             <MudList Clickable="true">
                 <MudButton @onclick="() => AddToTeam(p)">Add @p.Name to team.</MudButton>
