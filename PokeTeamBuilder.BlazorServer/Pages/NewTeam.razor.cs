@@ -14,6 +14,7 @@ namespace PokeTeamBuilder.BlazorServer.Pages
         private List<Item> items;
         private int offset = 0;
         private string TeamName { get; set; } = "";
+        private Pokemon CurrentMon;
 
         protected async Task PokeApiCall(int offset)
         {
@@ -63,7 +64,6 @@ namespace PokeTeamBuilder.BlazorServer.Pages
         {
             SelectedPokemon.Clear();
             CurrentMon = null;
-            PokemonTeamMembers.Clear();
         }
 
         private int IncrementOffset()
@@ -105,37 +105,37 @@ namespace PokeTeamBuilder.BlazorServer.Pages
             }
         }
 
-        private Pokemon CurrentMon;
+       
 
-        private List<Pokemon> PokemonTeamMembers = new();
-        private void ToggleStatCard(Pokemon mon)
-        {
-            if (CurrentMon == null)
-            {
-                CurrentMon = mon;
-            }
-            else if (!PokemonTeamMembers.Contains(CurrentMon) && (PokemonTeamMembers.Count < 7))
-            {
-                PokemonTeamMembers.Add(CurrentMon);
-                CurrentMon = mon;
-            }
-            else if (PokemonTeamMembers.Contains(CurrentMon))
-            {
-                CurrentMon = mon;
-            }
-            else if (mon == null)
-            {
-                PokemonTeamMembers.Add(CurrentMon);
-                CurrentMon = mon;
-                //save team to db
-            }
-        }
+        //private List<Pokemon> PokemonTeamMembers = new();
+        //private void ToggleStatCard(Pokemon mon)
+        //{
+        //    if (CurrentMon == null)
+        //    {
+        //        CurrentMon = mon;
+        //    }
+        //    else if (!PokemonTeamMembers.Contains(CurrentMon) && (PokemonTeamMembers.Count < 7))
+        //    {
+        //        PokemonTeamMembers.Add(CurrentMon);
+        //        CurrentMon = mon;
+        //    }
+        //    else if (PokemonTeamMembers.Contains(CurrentMon))
+        //    {
+        //        CurrentMon = mon;
+        //    }
+        //    else if (mon == null)
+        //    {
+        //        PokemonTeamMembers.Add(CurrentMon);
+        //        CurrentMon = mon;
+        //        //save team to db
+        //    }
+        //}
 
         private void SaveTeam() //need team object, list of pokemonteammembers, set it on new team
         {
             var team = new Team();
             team.TeamName = TeamName;
-            foreach(var mon in PokemonTeamMembers) 
+            foreach(var mon in SelectedPokemon) 
             {
                 var teamMember = new PokemonTeamMember();
                 teamMember.Name = mon.Name;

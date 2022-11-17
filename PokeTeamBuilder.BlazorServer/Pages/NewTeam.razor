@@ -14,23 +14,36 @@
     <br />
 }
 
-
 @foreach (var mon in SelectedPokemon)
+{
+    if (SelectedPokemon != null)
+    {
+        <img @onclick="() => CurrentMon = mon" Src="@mon.PokemonsSprite" Alt="image of your pokemon" />
+    }
+}
+@if(SelectedPokemon.Count == 6)
+{
+    <MudButton @onclick="() => SaveTeam()">Save Team</MudButton>
+}
+
+@*@foreach (var mon in SelectedPokemon)
 {
     if (SelectedPokemon != null)
     {
         <img @onclick="() => ToggleStatCard(mon)" Src="@mon.PokemonsSprite" Alt="image of your pokemon" />
     }
 
-}
-@if (PokemonTeamMembers.Count == 5)
+}*@
+<br />
+<MudDivider />
+@*@if (PokemonTeamMembers.Count == 5)
 {
     <MudButton @onclick="() => ToggleStatCard(null)">I'm finished!</MudButton>
 }
 @if(PokemonTeamMembers.Count == 6)
 {
     <MudButton @onclick="() => SaveTeam()">Save Team</MudButton>
-}
+}*@
 
 <MudTextField @bind-Value="TeamName" Label="TeamName" Variant="Variant.Text"></MudTextField>
 @if (CurrentMon != null)
