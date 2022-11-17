@@ -96,9 +96,23 @@ namespace PokeTeamBuilder.BlazorServer.Pages
         }
 
         private Pokemon CurrentMon;
+
+        private List<Pokemon> PokemonTeamMembers = new();
         private void ToggleStatCard(Pokemon mon)
         {
-            CurrentMon = mon;
+            if (CurrentMon == null)
+            {
+                CurrentMon = mon;
+            }
+            else if (!PokemonTeamMembers.Contains(CurrentMon) && (PokemonTeamMembers.Count < 7))
+            {
+                PokemonTeamMembers.Add(CurrentMon);
+                CurrentMon = mon;
+            } else if (mon == null)
+            {
+                PokemonTeamMembers.Add(CurrentMon);
+                CurrentMon = mon;
+            }
         }
 
 

@@ -21,11 +21,11 @@ namespace PokeTeamBuilder.Core
         public Ability[] PokemonsAbilites { get; set; }
         public Move[] PokemonsMoves { get; set; }
 
-        public Ability MyAbility { get; set; }
-        public Move MyMove1 { get; set; }
-        public Move MyMove2 { get; set; }
-        public Move MyMove3 { get; set; }
-        public Move MyMove4 { get; set; }
+        public string MyAbility { get; set; }
+        public string MyMove1 { get; set; }
+        public string MyMove2 { get; set; }
+        public string MyMove3 { get; set; }
+        public string MyMove4 { get; set; }
 
 
 

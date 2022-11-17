@@ -2,7 +2,7 @@
 @using PokeTeamBuilder.Core
 @inject HttpClient Http
 
-@*Would want a team and pokemon table--need to think about relation ship for data--1 to 1, 1 to many*@
+@*Need to make it so you can't pick the same pokemon twice'*@
 <PageTitle>Select your team</PageTitle>
 
 <MudText Typo="Typo.h3" GutterBottom="true">Your team:</MudText>
@@ -14,9 +14,15 @@
 {
     if (SelectedPokemon != null)
     {
-        <img @onclick="() => ToggleStatCard(mon)" Src="@mon.PokemonsSprite" Alt="image of your pokemon" />
+        <img @onclick="() => ToggleStatCard(mon)" Src="@mon.PokemonsSprite" Alt="image of your pokemon" />  
     }
+    
 }
+@if (PokemonTeamMembers.Count == 5)
+{
+<MudButton @onclick="() => ToggleStatCard(null)">I'm finished!</MudButton>
+}
+
 @if (CurrentMon != null)
 {
     <MudCard>
@@ -25,30 +31,35 @@
             <br />
             <EditForm Model="@CurrentMon" id="StatSelection">
                 <InputSelect @bind-Value=@CurrentMon.MyAbility>
+                    <option disabled selected value> -- select an ability -- </option>
                     @foreach (var ability in CurrentMon.PokemonsAbilites)
                     {
                         <option value="@ability.ability.name">@ability.ability.name</option>
                     }
                 </InputSelect>
                 <InputSelect @bind-Value=@CurrentMon.MyMove1>
+                    <option disabled selected value> -- select a move -- </option>
                     @foreach (var move in CurrentMon.PokemonsMoves)
                     {
                         <option value="@move.move.name">@move.move.name</option>
                     }
                 </InputSelect>
                 <InputSelect @bind-Value=@CurrentMon.MyMove2>
+                    <option disabled selected value> -- select a move -- </option>
                     @foreach (var move in CurrentMon.PokemonsMoves)
                     {
                         <option value="@move.move.name">@move.move.name</option>
                     }
                 </InputSelect>
                 <InputSelect @bind-Value=@CurrentMon.MyMove3>
+                    <option disabled selected value> -- select a move -- </option>
                     @foreach (var move in CurrentMon.PokemonsMoves)
                     {
                         <option value="@move.move.name">@move.move.name</option>
                     }
                 </InputSelect>
                 <InputSelect @bind-Value=@CurrentMon.MyMove4>
+                    <option disabled selected value> -- select a move -- </option>
                     @foreach (var move in CurrentMon.PokemonsMoves)
                     {
                         <option value="@move.move.name">@move.move.name</option>
