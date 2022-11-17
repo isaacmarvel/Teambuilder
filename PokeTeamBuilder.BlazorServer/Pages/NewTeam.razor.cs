@@ -4,41 +4,63 @@ namespace PokeTeamBuilder.BlazorServer.Pages
 {
     public partial class NewTeam
     {
-        private List<Pokemon> pokemon;
+        private List<Pokemon> pokemon; //may not need these
+        private List<Item> items = new();
         private int offset = 0;
 
         protected async Task PokeApiCall(int offset)
         {
-            var apiResult = await Http.GetFromJsonAsync<PokemonApiResult>($"https://pokeapi.co/api/v2/pokemon/?offset={offset}");
+            var PokemonApiResultProperty = await Http.GetFromJsonAsync<PokemonApiResult>($"https://pokeapi.co/api/v2/pokemon/?offset={offset}");
 
-            foreach (var p in apiResult.Results)
+            foreach (var p in PokemonApiResultProperty.Results)
             {
                 var pokemonDetails = await Http.GetFromJsonAsync<Rootobject>(p.Url);
 
                 p.PokemonsSprite = pokemonDetails.sprites.front_default;
             }
 
-            foreach (var p in apiResult.Results)
+            foreach (var p in PokemonApiResultProperty.Results)
             {
                 var pokemonDetails = await Http.GetFromJsonAsync<Rootobject>(p.Url);
 
                 p.PokemonsAbilites = pokemonDetails.abilities;
             }
 
-            foreach (var p in apiResult.Results)
+            foreach (var p in PokemonApiResultProperty.Results)
             {
                 var pokemonDetails = await Http.GetFromJsonAsync<Rootobject>(p.Url);
 
                 p.PokemonsMoves = pokemonDetails.moves;
             }
 
+            pokemon = PokemonApiResultProperty.Results;
 
-            pokemon = apiResult.Results;
+            var itemApiResultProperty = await Http.GetFromJsonAsync<ItemApiResult>($"https://pokeapi.co/api/v2/item/?limit=2000");
+
+            //foreach (var i in itemApiResultProperty.Results)
+            //{
+            //    var itemDetails = await Http.GetFromJsonAsync<ItemRootObject>(i.Url);
+            //    i.PokemonsItems = itemDetails.names;
+            //}
+
+            items = itemApiResultProperty.Results;
         }
+
+        //protected async Task PokeItemCall()
+        //{
+        //    var itemApiResultProperty = await Http.GetFromJsonAsync<ItemApiResult>($"https://pokeapi.co/api/v2/item/");
+
+        //    foreach (var i in itemApiResultProperty.Results)
+        //    {
+        //        var itemDetails = await Http.GetFromJsonAsync<ItemRootObject>(i.Url);
+        //        i.PokemonsItems = itemDetails.names;
+        //    }
+
+        //    items = itemApiResultProperty.Results;
+        //}
         protected override async Task OnInitializedAsync()
         {
             await PokeApiCall(offset);
-            Console.WriteLine("dog");
         }
 
         private List<Pokemon> SelectedPokemon = new();

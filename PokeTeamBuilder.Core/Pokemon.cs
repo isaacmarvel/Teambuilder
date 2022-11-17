@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace PokeTeamBuilder.Core
 {
     // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
-    
+
     public class Pokemon
     {
         [JsonProperty("name")]
@@ -26,9 +26,15 @@ namespace PokeTeamBuilder.Core
         public string MyMove2 { get; set; }
         public string MyMove3 { get; set; }
         public string MyMove4 { get; set; }
+        public string MyHeld_Item { get; set; }
 
+    }
+    public class Item
+    {
+        public string Name { get; set; }
+        public string Url { get; set; }
 
-
+        public Name[] PokemonsItems { get; set; }
     }
 
     public class PokemonApiResult
@@ -44,27 +50,28 @@ namespace PokeTeamBuilder.Core
 
         [JsonProperty("results")]
         public List<Pokemon> Results { get; set; }
-        
+
     }
+
+    public class ItemApiResult
+    {
+        public int Count { get; set; }
+        public string Next { get; set; }
+        public object Previous { get; set; }
+        public List<Item> Results { get; set; } //might run into issue with this result?
+    }
+
+   
 
     public class Rootobject
     {
         public Ability[] abilities { get; set; }
-        public int base_experience { get; set; }
-        public Game_Indices[] game_indices { get; set; }
-        public int height { get; set; }
         public object[] held_items { get; set; }
-        public int id { get; set; }
-        public bool is_default { get; set; }
-        public string location_area_encounters { get; set; }
         public Move[] moves { get; set; }
         public string name { get; set; }
-        public int order { get; set; }
-        public object[] past_types { get; set; }
         public Sprites sprites { get; set; }
         public Stat[] stats { get; set; }
-        public Type[] types { get; set; }
-        public int weight { get; set; }
+
     }
 
 
@@ -86,22 +93,10 @@ namespace PokeTeamBuilder.Core
         public string url { get; set; }
     }
 
-    public class Game_Indices
-    {
-        public int game_index { get; set; }
-        public Version version { get; set; }
-    }
-
-    public class Version
-    {
-        public string name { get; set; }
-        public string url { get; set; }
-    }
 
     public class Move
     {
         public Move1 move { get; set; }
-        public Version_Group_Details[] version_group_details { get; set; }
     }
 
     public class Move1
@@ -110,24 +105,7 @@ namespace PokeTeamBuilder.Core
         public string url { get; set; }
     }
 
-    public class Version_Group_Details
-    {
-        public int level_learned_at { get; set; }
-        public Move_Learn_Method move_learn_method { get; set; }
-        public Version_Group version_group { get; set; }
-    }
 
-    public class Move_Learn_Method
-    {
-        public string name { get; set; }
-        public string url { get; set; }
-    }
-
-    public class Version_Group
-    {
-        public string name { get; set; }
-        public string url { get; set; }
-    }
 
     public class Stat
     {
@@ -142,16 +120,49 @@ namespace PokeTeamBuilder.Core
         public string url { get; set; }
     }
 
-    public class Type
+
+    public class ItemRootObject
     {
-        public int slot { get; set; }
-        public Type1 type { get; set; }
+        public Attribute[] attributes { get; set; }
+        public Effect_Entries[] effect_entries { get; set; }
+        public Flavor_Text_Entries[] flavor_text_entries { get; set; }
+        public object fling_effect { get; set; }
+        public int fling_power { get; set; }
+        public int id { get; set; }
+        public object[] machines { get; set; }
+        public string name { get; set; }
+        public Name[] names { get; set; }
+        public Sprites sprites { get; set; }
     }
 
-    public class Type1
+    public class Attribute
     {
         public string name { get; set; }
         public string url { get; set; }
     }
+
+    public class Effect_Entries
+    {
+        public string effect { get; set; }
+        public string short_effect { get; set; }
+    }
+
+    public class Flavor_Text_Entries
+    {
+        public string text { get; set; }
+    }
+
+
+    public class ItemPokemon
+    {
+        public string name { get; set; }
+        public string url { get; set; }
+    }
+
+    public class Name
+    {
+        public string name { get; set; }
+    }
+
 
 }
