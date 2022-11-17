@@ -65,54 +65,9 @@
                         <option value="@move.move.name">@move.move.name</option>
                     }
                 </InputSelect>
-                @*<label for="Ability">Choose an ability:</label>
-                <select name="Ability" id="Ability" form="StatSelection" @bind-Value="CurrentMon">
-                    @foreach (var ability in CurrentMon.MyAbilities)
-                    {
-                        <option value="@ability.ability.name">@ability.ability.name</option>
-                    }
-                </select>
-                <br />
-                <label for="Move1">Choose your first move:</label>
-                <select name="Move1" id="Move1" form="StatSelection">
-                    @foreach (var move in CurrentMon.MyMoves)
-                    {
-                        <option value="@move.move.name">@move.move.name</option>
-                    }
-                </select>
-                <br />
-                <label for="Move2">Choose your second move:</label>
-                <select name="Move2" id="Move2" form="StatSelection">
-                    @foreach (var move in CurrentMon.MyMoves)
-                    {
-                        <option value="@move.move.name">@move.move.name</option>
-                    }
-                </select>
-                <br />
-                <label for="Move3">Choose your third move:</label>
-                <select name="Move3" id="Move3" form="StatSelection">
-                    @foreach (var move in CurrentMon.MyMoves)
-                    {
-                        <option value="@move.move.name">@move.move.name</option>
-                    }
-                </select>
-                <br />
-                <label for="Move4">Choose your fourth move:</label>
-                <select name="Move4" id="Move4" form="StatSelection">
-                    @foreach (var move in CurrentMon.MyMoves)
-                    {
-                        <option value="@move.move.name">@move.move.name</option>
-                    }
-                </select>*@
             </EditForm>
         </MudCardContent>
     </MudCard>
-    //add save pokemon button that saves to property? Definitely save team button.
-    //could have it all save to different property, then toggle stat card resets to different property based on which properties are empty?
-    //may need to put it all in a form so we get a submit button
-    //submit button can set currentmon to pokemon 1 or whatever
-
-    //have toggle button act as submit/save? so it takes all the bind values, saves to a new object, and makes another new one?
 }
 
 <MudCard>
@@ -120,14 +75,9 @@
         <MudButton @onclick="() => DeleteTeam()">Delete Team?</MudButton>
     </MudCardActions>
 </MudCard>
-@*<MudCard>
-    <MudCardActions>
-        <MudButton @onclick="() => SaveTeamToDb()">Delete Team?</MudButton>
-    </MudCardActions>
-</MudCard>*@
 
 <br />
-<h2>Choose your team from the following:</h2>
+<h2>Choose your team from the following. You can only choose one of each:</h2>
 <br />
 <p>@($"These are pokemon {offset} through {offset + 20}, going by Pokedex number:")</p>
 <br />

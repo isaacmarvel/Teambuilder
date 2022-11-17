@@ -44,7 +44,7 @@ namespace PokeTeamBuilder.BlazorServer.Pages
         private List<Pokemon> SelectedPokemon = new();
         private void AddToTeam(Pokemon pokemon)
         {
-            if (SelectedPokemon.Count < 6)
+            if (SelectedPokemon.Count < 6 && !SelectedPokemon.Contains(pokemon))
             {
                 SelectedPokemon.Add(pokemon);
             }
@@ -108,10 +108,16 @@ namespace PokeTeamBuilder.BlazorServer.Pages
             {
                 PokemonTeamMembers.Add(CurrentMon);
                 CurrentMon = mon;
-            } else if (mon == null)
+            }
+            else if (PokemonTeamMembers.Contains(CurrentMon))
+            {
+                CurrentMon = mon;
+            }
+            else if (mon == null)
             {
                 PokemonTeamMembers.Add(CurrentMon);
                 CurrentMon = mon;
+                //save team to db
             }
         }
 
