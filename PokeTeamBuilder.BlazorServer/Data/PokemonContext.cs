@@ -4,7 +4,7 @@ namespace PokeTeamBuilder.BlazorServer.Data
 {
         public class PokemonContext : DbContext
         {
-            public DbSet<Team> Teams { get; set; }
+            public DbSet<Team> Teams { get; set; } //Db.Teams is basically a list, has linq methods
             public DbSet<PokemonTeamMember> PokemonTeamMembers { get; set; }
 
             public string DbPath { get; } //or this

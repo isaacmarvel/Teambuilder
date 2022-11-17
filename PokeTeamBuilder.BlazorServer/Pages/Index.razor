@@ -1,4 +1,7 @@
 ﻿@page "/"
+@using Microsoft.EntityFrameworkCore
+@using PokeTeamBuilder.BlazorServer.Data
+@inject PokemonContext _context
 
 <PageTitle>Teams</PageTitle>
 
@@ -13,31 +16,23 @@
     Your current teams:
 </h2>
 
-<MudCard>
-    <MudCardContent>
-        <MudText>Name of team goes here</MudText>
-        <MudText Typo="Typo.body2">Images of pokemon go here</MudText>
-    </MudCardContent>
-    <MudCardActions>
-        <MudButton Variant="Variant.Filled" Color="Color.Primary">"View Team" goes here</MudButton>
-        <MudButton Variant="Variant.Filled" Color="Color.Primary">"Delete Team" goes here</MudButton>
-    </MudCardActions>
-</MudCard>
-<br>
-@*I think the view team button just displays them under the card*@
-
-<MudCard>
-    <MudCardContent>
-        <MudText>Name of team goes here</MudText>
-        <MudText Typo="Typo.body2">Images of pokemon go here</MudText>
-    </MudCardContent>
-    <MudCardActions>
-        <MudButton Variant="Variant.Filled" Color="Color.Primary">"View Team" goes here</MudButton>
-        <MudButton Variant="Variant.Filled" Color="Color.Primary">"Delete Team" goes here</MudButton>
-    </MudCardActions>
-</MudCard>
-<br>
+@foreach(var team in teams)
+{
+    <h1>@team.Id</h1>
+    <ul>
+        @foreach (var pokemon in team.PokemonTeamMembers.ToList())
+        {
+            <li>
+                @pokemon.Name
+            </li>
+        }
+    </ul>
+}
 
 @code {
-
+    public List<Team> teams { get; set; }
+    protected override void OnInitialized()
+    {
+        teams = _context.Teams.Include(team => team.PokemonTeamMembers).ToList();
+    }
 }

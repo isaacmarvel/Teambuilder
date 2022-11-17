@@ -27,7 +27,12 @@
 {
     <MudButton @onclick="() => ToggleStatCard(null)">I'm finished!</MudButton>
 }
+@if(PokemonTeamMembers.Count == 6)
+{
+    <MudButton @onclick="() => SaveTeam()">Save Team</MudButton>
+}
 
+<MudTextField @bind-Value="TeamName" Label="TeamName" Variant="Variant.Text"></MudTextField>
 @if (CurrentMon != null)
 {
     <MudCard>
@@ -70,13 +75,14 @@
                         <option value="@move.move.name">@move.move.name</option>
                     }
                 </InputSelect>
-                <InputSelect s @bind-Value=@CurrentMon.MyHeld_Item>
+                <InputSelect @bind-Value=@CurrentMon.MyHeld_Item>
                     <option disabled selected value> -- select an item-- </option>
                     @foreach (var item in items)
                     {
                         <option value="@item.Name">@item.Name</option>
                     }
                 </InputSelect>
+                
             </EditForm>
         </MudCardContent>
     </MudCard>

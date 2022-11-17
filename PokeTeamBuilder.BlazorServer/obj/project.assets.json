@@ -1667,6 +1667,7 @@
     "net6.0": [
       "Microsoft.EntityFrameworkCore.Design >= 7.0.0",
       "Microsoft.EntityFrameworkCore.Sqlite >= 7.0.0",
+      "Microsoft.Extensions.DependencyInjection >= 7.0.0",
       "MudBlazor >= 6.0.13",
       "PokeTeamBuilder.Core >= 1.0.0"
     ]
@@ -1721,6 +1722,10 @@
             "version": "[7.0.0, )"
           },
           "Microsoft.EntityFrameworkCore.Sqlite": {
+            "target": "Package",
+            "version": "[7.0.0, )"
+          },
+          "Microsoft.Extensions.DependencyInjection": {
             "target": "Package",
             "version": "[7.0.0, )"
           },

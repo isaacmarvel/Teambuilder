@@ -10,6 +10,7 @@
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Design": "7.0.0",
           "Microsoft.EntityFrameworkCore.Sqlite": "7.0.0",
+          "Microsoft.Extensions.DependencyInjection": "7.0.0",
           "MudBlazor": "6.0.13",
           "PokeTeamBuilder.Core": "1.0.0"
         },

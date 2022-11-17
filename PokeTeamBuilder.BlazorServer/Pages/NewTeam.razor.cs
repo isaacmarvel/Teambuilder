@@ -1,12 +1,19 @@
-﻿using PokeTeamBuilder.Core;
+﻿using Microsoft.AspNetCore.Components;
+using PokeTeamBuilder.BlazorServer.Data;
+using PokeTeamBuilder.Core;
+
 
 namespace PokeTeamBuilder.BlazorServer.Pages
 {
     public partial class NewTeam
     {
-        private List<Pokemon> pokemon; //may not need these
-        private List<Item> items = new();
+        [Inject]
+        private PokemonContext _context { get; set; }  //when component is created, service provider will create us a context
+        
+        private List<Pokemon> pokemon;
+        private List<Item> items;
         private int offset = 0;
+        private string TeamName { get; set; } = "";
 
         protected async Task PokeApiCall(int offset)
         {
@@ -36,28 +43,8 @@ namespace PokeTeamBuilder.BlazorServer.Pages
             pokemon = PokemonApiResultProperty.Results;
 
             var itemApiResultProperty = await Http.GetFromJsonAsync<ItemApiResult>($"https://pokeapi.co/api/v2/item/?limit=2000");
-
-            //foreach (var i in itemApiResultProperty.Results)
-            //{
-            //    var itemDetails = await Http.GetFromJsonAsync<ItemRootObject>(i.Url);
-            //    i.PokemonsItems = itemDetails.names;
-            //}
-
             items = itemApiResultProperty.Results;
         }
-
-        //protected async Task PokeItemCall()
-        //{
-        //    var itemApiResultProperty = await Http.GetFromJsonAsync<ItemApiResult>($"https://pokeapi.co/api/v2/item/");
-
-        //    foreach (var i in itemApiResultProperty.Results)
-        //    {
-        //        var itemDetails = await Http.GetFromJsonAsync<ItemRootObject>(i.Url);
-        //        i.PokemonsItems = itemDetails.names;
-        //    }
-
-        //    items = itemApiResultProperty.Results;
-        //}
         protected override async Task OnInitializedAsync()
         {
             await PokeApiCall(offset);
@@ -142,6 +129,26 @@ namespace PokeTeamBuilder.BlazorServer.Pages
                 CurrentMon = mon;
                 //save team to db
             }
+        }
+
+        private void SaveTeam() //need team object, list of pokemonteammembers, set it on new team
+        {
+            var team = new Team();
+            team.TeamName = TeamName;
+            foreach(var mon in PokemonTeamMembers) 
+            {
+                var teamMember = new PokemonTeamMember();
+                teamMember.Name = mon.Name;
+                teamMember.Ability = mon.MyAbility;
+                teamMember.move1 = mon.MyMove1;
+                teamMember.move2 = mon.MyMove2;
+                teamMember.move3 = mon.MyMove3;
+                teamMember.move4 = mon.MyMove4;
+                teamMember.Held_Item = mon.MyHeld_Item; 
+                team.PokemonTeamMembers.Add(teamMember);
+            }
+            _context.Add(team);
+            _context.SaveChanges();
         }
 
 

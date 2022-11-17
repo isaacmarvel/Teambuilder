@@ -13,6 +13,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddHttpClient();
 builder.Services.AddMudServices();
+builder.Services.AddDbContext<PokemonContext>(); //now can inject pokemoncontext in any services or components
 
 var app = builder.Build();
 
