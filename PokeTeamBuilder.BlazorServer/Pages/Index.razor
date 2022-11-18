@@ -21,7 +21,7 @@
         <MudCardContent>
             @if (team.TeamName != "")
             {
-                <MudText>Team @team.Id is named @team.TeamName</MudText>
+                <MudText>Team Name: @team.TeamName</MudText>
             }
             else
             {
@@ -86,7 +86,7 @@
 }
 
 @code {
-    public List<Team> teams { get; set; }
+    public List<Team>? teams { get; set; }
     protected override void OnInitialized()
     {
         teams = _context.Teams.Include(team => team.PokemonTeamMembers).ToList();
