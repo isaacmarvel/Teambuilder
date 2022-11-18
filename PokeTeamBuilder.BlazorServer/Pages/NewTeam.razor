@@ -19,7 +19,7 @@
         <img @onclick="() => CurrentMon = mon" Src="@mon.PokemonsSprite" Alt="image of your pokemon" />
     }
 }
-@if(SelectedPokemon.Count == 6)
+@if (SelectedPokemon.Count == 6)
 {
     <MudButton @onclick="() => SaveTeam()">Save Team</MudButton>
 }
@@ -81,9 +81,9 @@
                         <option value="@item.Name">@item.Name</option>
                     }
                 </InputSelect>
-                
+
             </EditForm>
-            
+
         </MudCardContent>
         <MudDivider />
         <br />

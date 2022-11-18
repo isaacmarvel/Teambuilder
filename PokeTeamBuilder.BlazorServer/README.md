@@ -1,21 +1,32 @@
 # Teambuilder
-This is a Blazor site users will be able use to create and store pokemon teams. As a stretch goal, users will be able to login via a username and password, but at the very least the site will communicate with the pokeapi(https://pokeapi.co/) to pull pokemon data, allowing users to use that data to create a team of six pokemon, including each pokemon's stats and moves, and each set of six will be saved to a sql database. 
 
-Stretch goals: 
-1. User authentication
-2. The ability to edit teams one has already made. 
-3. Create unit tests for the app
+    This is a Blazor site used to create and store pokemon teams. 
+    
+    It pulls pokemon data from the pokeapi(https://pokeapi.co/) and allows users to create a team of six pokemon based on that data, including moves, abilites, and held items.
 
-Code Louisville features included:
-1. Connect to an external/3rd party API and read data into your app
-2. Read data from an external file, such as text, JSON, CSV, etc and use that data in your application
-3. Create a dictionary or list, populate it with several values, retrieve at least one value, and use it in your program
-4. Create an additional class which inherits one or more properties from its parent
-5. (Maybe) calculate and display data based on an external factor (ex: get the current date, and display how many days remaining until some event)
-6. (Maybe) create 3 or more unit tests for your application
+    Once a team has been constructed, the team is sent to a SQLite database via EF Core, and the team data is pulled and displayed on the front page.
+   
+    PokeTeamBuilder.Console was just to mess around with api requests, and PokeTeamBuilder.Core contains my Pokemon class, as well as an api client that I didn't really end up using.
+  
+    Instructions to run: After cloning the repo, open PokeTeamBuilder.sln in Visual Studio. You should be able to just run PokeTeamBuilder.BlazorServer and be good to go!
 
-next steps: add stats, natures, and items
+     Code Louisville Features Incorporated:
 
-Wishlist: add ability to search through pokemon
-make searchable items
-Add images to viewteams
+    Connect to an external/3rd party API and read data into your app--I read data from the pokeApi
+    Read data from an external file, such as text, JSON, CSV, etc and use that data in your application--I'm reading from a SQLite database I create
+    Use a LINQ query to retrieve information from a data structure (such as a list or array) or file--line 92 on Index.razor features .Include(), which I believe is a LINQ query
+    Create a dictionary or list, populate it with several values, retrieve at least one value, and use it in your program--got plenty of lists
+
+    I intend to continue work on this page, and hope to eventually add:
+
+    The ability to choose pokemon's stats.
+    A way to search through items and pokemon instead of having to scroll though long lists.
+    Images of the pokemon to the front page.
+
+    Eventually, it might also be nice to add:
+
+    User authentication
+    The ability to edit and delete teams one has already made.
+    Create unit tests for the app
+
+

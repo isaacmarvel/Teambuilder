@@ -15,7 +15,7 @@
     Your current teams:
 </h2>
 
-@foreach(var team in teams)
+@foreach (var team in teams)
 {
     <MudCard>
         <MudCardContent>
@@ -27,8 +27,8 @@
             {
                 <MudText>This one doesn't have a name, but the Team Id is @team.Id</MudText>
             }
-                    
-            
+
+
             <MudList>
                 @foreach (var pokemon in team.PokemonTeamMembers.ToList())
                 {
@@ -39,39 +39,39 @@
 
                         @if (pokemon.Held_Item != null)
                         {
-                        <MudListItem>
-                            Held item: @pokemon.Held_Item
-                        </MudListItem>
+                            <MudListItem>
+                                Held item: @pokemon.Held_Item
+                            </MudListItem>
                         }
                         @if (pokemon.move1 != null)
                         {
-                        <MudListItem>
-                            First move: @pokemon.move1
-                        </MudListItem>
+                            <MudListItem>
+                                First move: @pokemon.move1
+                            </MudListItem>
                         }
                         @if (pokemon.move2 != null)
                         {
-                        <MudListItem>
-                            Second move: @pokemon.move2
-                        </MudListItem>
+                            <MudListItem>
+                                Second move: @pokemon.move2
+                            </MudListItem>
                         }
                         @if (pokemon.move3 != null)
                         {
-                        <MudListItem>
-                            Third move: @pokemon.move3
-                        </MudListItem>
+                            <MudListItem>
+                                Third move: @pokemon.move3
+                            </MudListItem>
                         }
                         @if (pokemon.move4 != null)
                         {
-                        <MudListItem>
-                            Fourth move: @pokemon.move4
-                        </MudListItem>
+                            <MudListItem>
+                                Fourth move: @pokemon.move4
+                            </MudListItem>
                         }
                         @if (pokemon.Ability != null)
                         {
-                        <MudListItem>
-                            Ability: @pokemon.Ability
-                        </MudListItem>
+                            <MudListItem>
+                                Ability: @pokemon.Ability
+                            </MudListItem>
                         }
                     </MudList>
                     <MudDivider />
@@ -82,7 +82,7 @@
         </MudCardContent>
     </MudCard>
 
- 
+
 }
 
 @code {

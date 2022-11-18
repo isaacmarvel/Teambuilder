@@ -8,13 +8,14 @@ namespace PokeTeamBuilder.BlazorServer.Pages
     public partial class NewTeam
     {
         [Inject]
-        private PokemonContext _context { get; set; }  
-        
+        private PokemonContext _context { get; set; }
+
         private List<Pokemon> pokemon;
         private List<Item> items;
         private int offset = 0;
         private string TeamName { get; set; } = "";
         private Pokemon CurrentMon;
+        private List<Pokemon> SelectedPokemon = new();
 
         protected async Task PokeApiCall(int offset)
         {
@@ -51,7 +52,7 @@ namespace PokeTeamBuilder.BlazorServer.Pages
             await PokeApiCall(offset);
         }
 
-        private List<Pokemon> SelectedPokemon = new();
+
         private void AddToTeam(Pokemon pokemon)
         {
             if (SelectedPokemon.Count < 6 && !SelectedPokemon.Contains(pokemon))
@@ -110,7 +111,7 @@ namespace PokeTeamBuilder.BlazorServer.Pages
         {
             var team = new Team();
             team.TeamName = TeamName;
-            foreach(var mon in SelectedPokemon) 
+            foreach (var mon in SelectedPokemon)
             {
                 var teamMember = new PokemonTeamMember();
                 teamMember.Name = mon.Name;
@@ -119,7 +120,7 @@ namespace PokeTeamBuilder.BlazorServer.Pages
                 teamMember.move2 = mon.MyMove2;
                 teamMember.move3 = mon.MyMove3;
                 teamMember.move4 = mon.MyMove4;
-                teamMember.Held_Item = mon.MyHeld_Item; 
+                teamMember.Held_Item = mon.MyHeld_Item;
                 team.PokemonTeamMembers.Add(teamMember);
             }
             _context.Add(team);
