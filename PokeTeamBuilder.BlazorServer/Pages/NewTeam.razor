@@ -2,14 +2,12 @@
 @using PokeTeamBuilder.Core
 @inject HttpClient Http
 
-@*Need to make it so you can't pick the same pokemon twice'*@
 <PageTitle>Select your team</PageTitle>
 <h1>Teambuilder</h1>
 
 
 @if (SelectedPokemon.Count != 0)
 {
-    <MudText Typo="Typo.h3" GutterBottom="true">Your team:</MudText>
     <h2>Click each pokemon to edit their details</h2>
     <br />
 }
@@ -26,33 +24,21 @@
     <MudButton @onclick="() => SaveTeam()">Save Team</MudButton>
 }
 
-@*@foreach (var mon in SelectedPokemon)
-{
-    if (SelectedPokemon != null)
-    {
-        <img @onclick="() => ToggleStatCard(mon)" Src="@mon.PokemonsSprite" Alt="image of your pokemon" />
-    }
-
-}*@
 <br />
 <MudDivider />
-@*@if (PokemonTeamMembers.Count == 5)
-{
-    <MudButton @onclick="() => ToggleStatCard(null)">I'm finished!</MudButton>
-}
-@if(PokemonTeamMembers.Count == 6)
-{
-    <MudButton @onclick="() => SaveTeam()">Save Team</MudButton>
-}*@
 
 <MudTextField @bind-Value="TeamName" Label="TeamName" Variant="Variant.Text"></MudTextField>
+
+<br />
+
+
 @if (CurrentMon != null)
 {
     <MudCard>
         <MudCardContent>
             <MudText>Pokemon Name: @CurrentMon.Name</MudText>
             <br />
-            <EditForm Model="@CurrentMon" id="StatSelection">
+            <EditForm Model="@CurrentMon">
                 <InputSelect @bind-Value=@CurrentMon.MyAbility>
                     <option disabled selected value> -- select an ability -- </option>
                     @foreach (var ability in CurrentMon.PokemonsAbilites)
@@ -97,9 +83,13 @@
                 </InputSelect>
                 
             </EditForm>
+            
         </MudCardContent>
+        <MudDivider />
+        <br />
     </MudCard>
 }
+
 @if (SelectedPokemon.Count != 0)
 {
     <MudCard>
@@ -108,7 +98,6 @@
         </MudCardActions>
     </MudCard>
 }
-
 
 <br />
 <h2>Choose your team from the following. You can only choose one of each:</h2>

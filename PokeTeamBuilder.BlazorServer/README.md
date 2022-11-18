@@ -17,4 +17,5 @@ Code Louisville features included:
 next steps: add stats, natures, and items
 
 Wishlist: add ability to search through pokemon
-make searchable item
+make searchable items
+Add images to viewteams

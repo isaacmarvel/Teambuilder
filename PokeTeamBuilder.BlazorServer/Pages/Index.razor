@@ -6,10 +6,10 @@
 <PageTitle>Teams</PageTitle>
 
 @*This will be my list of teams already built*@
-
+<MudThemeProvider Theme="MyCustomTheme" />
 <MudText Typo="Typo.h3" GutterBottom="true">Teams</MudText>
 <MudText Class="mb-8">From this page, you can view your already-built teams, or click the button to make a new team.</MudText>
-<MudButton Variant="Variant.Filled" Color="Color.Secondary" Href="/NewTeam">Build a new team</MudButton>
+<MudButton Variant="Variant.Filled" Color="Color.Primary" Href="/NewTeam">Build a new team</MudButton>
 <br>
 <br>
 <h2>
@@ -18,7 +18,72 @@
 
 @foreach(var team in teams)
 {
-    <h1>@team.Id</h1>
+    <MudCard>
+        <MudCardContent>
+            @if (team.TeamName != "")
+            {
+                <MudText>Team @team.Id is named @team.TeamName</MudText>
+            }
+            else
+            {
+                <MudText>This one doesn't have a name, but the Team Id is @team.Id</MudText>
+            }
+                    
+            
+            <MudList>
+                @foreach (var pokemon in team.PokemonTeamMembers.ToList())
+                {
+                    <MudListItem>
+                        @pokemon.Name
+                    </MudListItem>
+                    <MudList>
+
+                        @if (pokemon.Held_Item != null)
+                        {
+                        <MudListItem>
+                            Held item: @pokemon.Held_Item
+                        </MudListItem>
+                        }
+                        @if (pokemon.move1 != null)
+                        {
+                        <MudListItem>
+                            First move: @pokemon.move1
+                        </MudListItem>
+                        }
+                        @if (pokemon.move2 != null)
+                        {
+                        <MudListItem>
+                            Second move: @pokemon.move2
+                        </MudListItem>
+                        }
+                        @if (pokemon.move3 != null)
+                        {
+                        <MudListItem>
+                            Third move: @pokemon.move3
+                        </MudListItem>
+                        }
+                        @if (pokemon.move4 != null)
+                        {
+                        <MudListItem>
+                            Fourth move: @pokemon.move4
+                        </MudListItem>
+                        }
+                        @if (pokemon.Ability != null)
+                        {
+                        <MudListItem>
+                            Ability: @pokemon.Ability
+                        </MudListItem>
+                        }
+                    </MudList>
+                    <MudDivider />
+                }
+                <MudDivider />
+                <MudDivider />
+            </MudList>
+        </MudCardContent>
+    </MudCard>
+
+   @* <h1>@team.Id</h1>
     <ul>
         @foreach (var pokemon in team.PokemonTeamMembers.ToList())
         {
@@ -26,7 +91,7 @@
                 @pokemon.Name
             </li>
         }
-    </ul>
+    </ul>*@
 }
 
 @code {
@@ -35,4 +100,14 @@
     {
         teams = _context.Teams.Include(team => team.PokemonTeamMembers).ToList();
     }
+
+    MudTheme MyCustomTheme = new MudTheme()
+        {
+            Palette = new Palette()
+            {
+                Primary = Colors.Red.Default,
+                Secondary = Colors.Grey.Lighten5,
+                AppbarBackground = Colors.Grey.Darken4,
+            },
+        };
 }
