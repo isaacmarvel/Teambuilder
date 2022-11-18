@@ -5,7 +5,6 @@
 
 <PageTitle>Teams</PageTitle>
 
-@*This will be my list of teams already built*@
 <MudThemeProvider Theme="MyCustomTheme" />
 <MudText Typo="Typo.h3" GutterBottom="true">Teams</MudText>
 <MudText Class="mb-8">From this page, you can view your already-built teams, or click the button to make a new team.</MudText>
@@ -83,15 +82,7 @@
         </MudCardContent>
     </MudCard>
 
-   @* <h1>@team.Id</h1>
-    <ul>
-        @foreach (var pokemon in team.PokemonTeamMembers.ToList())
-        {
-            <li>
-                @pokemon.Name
-            </li>
-        }
-    </ul>*@
+ 
 }
 
 @code {

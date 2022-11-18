@@ -8,7 +8,7 @@ namespace PokeTeamBuilder.BlazorServer.Pages
     public partial class NewTeam
     {
         [Inject]
-        private PokemonContext _context { get; set; }  //when component is created, service provider will create us a context
+        private PokemonContext _context { get; set; }  
         
         private List<Pokemon> pokemon;
         private List<Item> items;
@@ -105,33 +105,8 @@ namespace PokeTeamBuilder.BlazorServer.Pages
             }
         }
 
-       
 
-        //private List<Pokemon> PokemonTeamMembers = new();
-        //private void ToggleStatCard(Pokemon mon)
-        //{
-        //    if (CurrentMon == null)
-        //    {
-        //        CurrentMon = mon;
-        //    }
-        //    else if (!PokemonTeamMembers.Contains(CurrentMon) && (PokemonTeamMembers.Count < 7))
-        //    {
-        //        PokemonTeamMembers.Add(CurrentMon);
-        //        CurrentMon = mon;
-        //    }
-        //    else if (PokemonTeamMembers.Contains(CurrentMon))
-        //    {
-        //        CurrentMon = mon;
-        //    }
-        //    else if (mon == null)
-        //    {
-        //        PokemonTeamMembers.Add(CurrentMon);
-        //        CurrentMon = mon;
-        //        //save team to db
-        //    }
-        //}
-
-        private void SaveTeam() //need team object, list of pokemonteammembers, set it on new team
+        private void SaveTeam()
         {
             var team = new Team();
             team.TeamName = TeamName;
