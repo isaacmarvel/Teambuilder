@@ -81,6 +81,13 @@
                         <option value="@item.Name">@item.Name</option>
                     }
                 </InputSelect>
+                <InputSelect @bind-Value=@CurrentMon.MyNature> @*Will need to update database stuff*@
+                    <option disabled selected value> -- select a nature-- </option>
+                    @foreach (var nature in natures)
+                    {
+                        <option value="@nature.name">@nature.name</option>
+                    }
+                </InputSelect>
 
             </EditForm>
 

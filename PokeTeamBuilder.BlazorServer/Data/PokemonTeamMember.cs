@@ -10,6 +10,7 @@
         public string? move3 { get; set; }
         public string? move4 { get; set; }
         public string? Held_Item { get; set; }
+        public string? Nature {  get; set; }
 
         public int TeamId { get; set; }
         public Team Team { get; set; }

@@ -12,6 +12,7 @@ namespace PokeTeamBuilder.BlazorServer.Pages
 
         private List<Pokemon> pokemon;
         private List<Item> items;
+        private List<Natures> natures;
         private int offset = 0;
         private string TeamName { get; set; } = "";
         private Pokemon CurrentMon;
@@ -20,6 +21,7 @@ namespace PokeTeamBuilder.BlazorServer.Pages
         protected async Task PokeApiCall(int offset)
         {
             var PokemonApiResultProperty = await Http.GetFromJsonAsync<PokemonApiResult>($"https://pokeapi.co/api/v2/pokemon/?offset={offset}");
+            pokemon = PokemonApiResultProperty.Results;
 
             foreach (var p in PokemonApiResultProperty.Results)
             {
@@ -42,10 +44,11 @@ namespace PokeTeamBuilder.BlazorServer.Pages
                 p.PokemonsMoves = pokemonDetails.moves;
             }
 
-            pokemon = PokemonApiResultProperty.Results;
-
             var itemApiResultProperty = await Http.GetFromJsonAsync<ItemApiResult>($"https://pokeapi.co/api/v2/item/?limit=2000");
             items = itemApiResultProperty.Results;
+
+            var natureApiResultProperty = await Http.GetFromJsonAsync<NatureApiResult>($"https://pokeapi.co/api/v2/nature/");
+            natures = natureApiResultProperty.results;
         }
         protected override async Task OnInitializedAsync()
         {
@@ -121,6 +124,7 @@ namespace PokeTeamBuilder.BlazorServer.Pages
                 teamMember.move3 = mon.MyMove3;
                 teamMember.move4 = mon.MyMove4;
                 teamMember.Held_Item = mon.MyHeld_Item;
+                teamMember.Nature = mon.MyNature;
                 team.PokemonTeamMembers.Add(teamMember);
             }
             _context.Add(team);

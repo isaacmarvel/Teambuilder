@@ -73,6 +73,12 @@
                                 Ability: @pokemon.Ability
                             </MudListItem>
                         }
+                        @if (pokemon.Nature != null)
+                        {
+                            <MudListItem>
+                                Ability: @pokemon.Nature
+                            </MudListItem>
+                        }
                     </MudList>
                     <MudDivider />
                 }
