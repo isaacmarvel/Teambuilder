@@ -32,9 +32,11 @@
             <MudList>
                 @foreach (var pokemon in team.PokemonTeamMembers.ToList())
                 {
+                    <img Src="@pokemon.Sprite" Alt="image of your pokemon" />
                     <MudListItem>
-                        @pokemon.Name
+                        Pokemon Name: @pokemon.Name
                     </MudListItem>
+                    
                     <MudList>
 
                         @if (pokemon.Held_Item != null)
