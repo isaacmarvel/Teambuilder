@@ -125,6 +125,7 @@ namespace PokeTeamBuilder.BlazorServer.Pages
                 teamMember.move4 = mon.MyMove4;
                 teamMember.Held_Item = mon.MyHeld_Item;
                 teamMember.Nature = mon.MyNature;
+                teamMember.Sprite = mon.PokemonsSprite; //will need to be a mysprite?
                 team.PokemonTeamMembers.Add(teamMember);
             }
             _context.Add(team);

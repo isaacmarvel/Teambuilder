@@ -3,7 +3,7 @@
 @inject HttpClient Http
 
 <PageTitle>Select your team</PageTitle>
-<h1>Teambuilder</h1>
+<h1>Team Builder</h1>
 
 
 @if (SelectedPokemon.Count != 0)
@@ -81,7 +81,7 @@
                         <option value="@item.Name">@item.Name</option>
                     }
                 </InputSelect>
-                <InputSelect @bind-Value=@CurrentMon.MyNature> @*Will need to update database stuff*@
+                <InputSelect @bind-Value=@CurrentMon.MyNature> 
                     <option disabled selected value> -- select a nature-- </option>
                     @foreach (var nature in natures)
                     {
