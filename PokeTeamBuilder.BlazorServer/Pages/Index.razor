@@ -27,6 +27,7 @@
             {
                 <MudText>This one doesn't have a name, but the Team Id is @team.Id</MudText>
             }
+            <button @onclick="() => DeleteTeamFromDb(team)">Delete team</button>
 
 
             <MudList>
@@ -109,4 +110,10 @@
                 AppbarBackground = Colors.Grey.Darken4,
             },
         };
+
+    private void DeleteTeamFromDb(Team team)
+    {
+        _context.Remove(team);
+        _context.SaveChanges();
+    }
 }
