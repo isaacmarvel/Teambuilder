@@ -2,6 +2,7 @@
 @using Microsoft.EntityFrameworkCore
 @using PokeTeamBuilder.BlazorServer.Data
 @inject PokemonContext _context
+@inject NavigationManager uriHelper
 
 <PageTitle>Teams</PageTitle>
 
@@ -115,5 +116,6 @@
     {
         _context.Remove(team);
         _context.SaveChanges();
+        uriHelper.NavigateTo(uriHelper.Uri, forceLoad: true);
     }
 }
