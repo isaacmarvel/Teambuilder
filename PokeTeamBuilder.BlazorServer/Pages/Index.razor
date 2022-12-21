@@ -29,14 +29,14 @@
                 <MudText>This one doesn't have a name, but the Team Id is @team.Id</MudText>
             }
             <MudButton @onclick="() => DeleteFromDatabase(team)">Delete Team</MudButton>
-            <MudButton @onclick="() => UpdateTeamButton(team)">Update Team</MudButton>
+            @*<MudButton @onclick="() => UpdateTeamButton(team)">Update Team</MudButton>*@
 
             
         @*    New stuff goes here*@
-            @if (CurrentTeam != null)
+  @*          @if (CurrentTeam != null)
             {
 
-            }
+            }*@
 
             <MudList>
                 @foreach (var pokemon in team.PokemonTeamMembers.ToList())
@@ -125,8 +125,9 @@
         _context.SaveChanges();
         uriHelper.NavigateTo(uriHelper.Uri, forceLoad: true);
     }
-    private void UpdateTeamButton(Team team)
-    {
-        CurrentTeam = team;
-    }
+
+    //private void UpdateTeamButton(Team team)
+    //{
+    //    CurrentTeam = team;
+    //}
 }

@@ -131,7 +131,5 @@ namespace PokeTeamBuilder.BlazorServer.Pages
             _context.Add(team);
             _context.SaveChanges();
         }
-
-
     }
 }
